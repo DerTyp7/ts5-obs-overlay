@@ -29,7 +29,7 @@
 
 ## Config
 In the `config.js` file, which is located in the same folder as the `overlay.html` file, you can make various settings for the appearance of the overlay.
->**_NOTE_** If your change something in the config file you have to do [Option 3 of the troubleshooting below]("#Option-3").  
+>**_NOTE_** If your change something in the config file you have to do [Option 3 of the troubleshooting below]("#option-3").  
 
 ## Troubleshooting
 ### Option 1:  
