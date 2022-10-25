@@ -21,7 +21,6 @@ function handleClientMoved(data) {
 		if (data.payload.clientId == thisClient.id) {
 			console.log("You disconnected");
 			clientList.clear();
-			//! Maybe handle channel list here too
 		}
 	} else {
 		// User moved channel

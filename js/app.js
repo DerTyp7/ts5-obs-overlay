@@ -37,7 +37,7 @@ function main() {
 			case "talkStatusChanged":
 				handleTalkStatusChanged(data);
 				break;
-			case "clientSelfPropertyUpdated":
+			case "serverPropertiesUpdated":
 				ws.close();
 			default:
 				console.log(`No handler for event type: ${data.type}`);
