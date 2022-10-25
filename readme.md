@@ -1,6 +1,13 @@
+
 # A OBS-Overlay for TeamSpeak5
 ![Unbenannt](https://user-images.githubusercontent.com/76851529/197853533-7d97fa33-407b-42b4-9677-18ef7f17ceb5.png)
-
+- [A OBS-Overlay for TeamSpeak5](#a-obs-overlay-for-teamspeak5)
+  - [Setup](#setup)
+  - [Config](#config)
+  - [Troubleshooting](#troubleshooting)
+    - [Option 1:](#option-1)
+    - [Option 2:](#option-2)
+    - [Option 3:](#option-3)
 
 >**_WARNING:_** This overlay works only if you are connected to **one** server only.  
 > If you were connected to multiple servers and the overlay crashed, try disconnecting from **all** servers and reconnecting to **only one**.
