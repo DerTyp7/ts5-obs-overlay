@@ -3,7 +3,8 @@ function drawClients() {
 
 	result = "";
 	getClientsInChannel(thisClient.channel).forEach((c) => {
-		result += '<div> <div class="content-img">';
+		result += `<div style="color:${CONFIG.style.fontColor}; font-size:${CONFIG.style.fontSize}">`;
+		result += '<div class="content-img">';
 		if (c.outputMuted) {
 			result += '	<img src="img/muted_output.svg" />';
 		} else if (c.inputMuted) {
@@ -14,7 +15,9 @@ function drawClients() {
 			result += '	<img src="img/off.svg" />';
 		}
 		result += "</div>";
-		result += '<div class="content-text">' + c.name + "</div></div>";
+		result += `<div class="content-text"
+		 style="-webkit-text-stroke:${CONFIG.style.fontStrokeSize} ${CONFIG.style.fontStrokeColor};
+		"><p style="background:${CONFIG.style.fontBackground};">${c.name}</p></div></div>`;
 	});
 	elem.innerHTML = result;
 }
