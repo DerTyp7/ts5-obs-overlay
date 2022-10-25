@@ -1,9 +1,11 @@
 function handleAuthMessage(data) {
 	console.log("Handling auth message");
-	channelList.items = parseChannelInfos(
-		data.payload.connections[0].channelInfos
+	channelList.setItems(
+		parseChannelInfos(data.payload.connections[0].channelInfos)
 	);
-	clientList.items = parseClientInfos(data.payload.connections[0].clientInfos);
+	clientList.setItems(
+		parseClientInfos(data.payload.connections[0].clientInfos)
+	);
 	thisClient = clientList.getById(data.payload.connections[0].clientId);
 }
 

@@ -1,4 +1,4 @@
-function connectToTeamSpeak() {
+function main() {
 	const ws = new WebSocket("ws://localhost:5899");
 	const paylaod = {
 		type: "auth",
@@ -13,6 +13,9 @@ function connectToTeamSpeak() {
 		},
 	};
 
+	clientList.clear();
+	channelList.clear();
+
 	ws.onopen = (event) => {
 		// Send payload to TS5 client
 		ws.send(JSON.stringify(paylaod));
@@ -20,7 +23,7 @@ function connectToTeamSpeak() {
 
 	ws.onmessage = (event) => {
 		let data = JSON.parse(event.data);
-
+		console.log(data);
 		switch (data.type) {
 			case "auth":
 				handleAuthMessage(data);
@@ -34,6 +37,8 @@ function connectToTeamSpeak() {
 			case "talkStatusChanged":
 				handleTalkStatusChanged(data);
 				break;
+			case "clientSelfPropertyUpdated":
+				ws.close();
 			default:
 				console.log(`No handler for event type: ${data.type}`);
 				break;
@@ -45,12 +50,13 @@ function connectToTeamSpeak() {
 
 	ws.onerror = (err) => {
 		console.error(err);
-		connectToTeamSpeak(); // Reconnected
+		ws.close();
+		return;
 	};
 
 	ws.onclose = (event) => {
 		console.log("Disconnected: " + event.reason);
-		connectToTeamSpeak(); // Reconnected
+		main(); // Reconnected
 	};
 }
-connectToTeamSpeak();
+main();

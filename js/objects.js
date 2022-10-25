@@ -50,4 +50,19 @@ class List {
 	clear() {
 		this.items = [];
 	}
+
+	setItems(items) {
+		// Never tested
+		let duplicateFound = false;
+		items.forEach((e1, i) => {
+			items.forEach((e2, j) => {
+				if (e1.id === e2.id && i != j) {
+					duplicateFound = true;
+				}
+			});
+		});
+		if (!duplicateFound) {
+			this.items = items;
+		}
+	}
 }
