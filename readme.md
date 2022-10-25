@@ -18,21 +18,21 @@
 6. Add a new **browser source** to your scene
 ![image](https://user-images.githubusercontent.com/76851529/197849644-9396fb9c-4943-4cb2-a511-062ffcd60404.png)
 
-7. In the properties of your new browser source, select the Local File check box.
+7. In the properties of your new browser source, select the Local File check box
 8. Click "Browse" next to the newly apperared "Local file" field
 9. Now select the in step 1 downloaded `overlay.html`
-10. Set the "Width" to `2000` and the "Height" to `1000` (This is just my own preference. If you have better values use them)
+10. Set the "Width" to `2000` and the "Height" to `1000` (This is just my own preference. If you have better values, use them)
 ![image](https://user-images.githubusercontent.com/76851529/197849886-679b200b-6d42-439e-bce6-44c6df67ffcc.png)
 
-11. Now connect to a TeamSpeak server and check if it works. You may need to **accept** the remote app in your TeamSpeak notifications.
+11. Now connect to a TeamSpeak server and check if it works. You may need to **accept** the remote app in your TeamSpeak notifications
 ![image](https://user-images.githubusercontent.com/76851529/197850151-ad057277-fe3d-427e-b21b-1d2b4875c70b.png)
 
 ## Troubleshooting
 ### Restart the overlay
 - **Option 1:**    
-   - Disconnect from all TeamSpeak servers and reconnect to just one.
+   - Disconnect from all TeamSpeak servers and reconnect to just one
 - **Option 2:**  
-   - Restart TeamSpeak5.  
+   - Restart TeamSpeak5
 - **Option3:**  
    1. Open OBS Studio
    2. Go open the properties of your browser source
