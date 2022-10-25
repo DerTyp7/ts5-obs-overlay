@@ -27,13 +27,16 @@
 11. Now connect to a TeamSpeak server and check if it works. You may need to **accept** the remote app in your TeamSpeak notifications
 ![image](https://user-images.githubusercontent.com/76851529/197850151-ad057277-fe3d-427e-b21b-1d2b4875c70b.png)
 
+## Config
+In the `config.js` file, which is located in the same folder as the `overlay.html` file, you can make various settings for the appearance of the overlay.
+>**_NOTE_** If your change something in the config file you have to do [Option 3 of the troubleshooting below]("#Option-3").  
+
 ## Troubleshooting
-### Restart the overlay
-- **Option 1:**    
-   - Disconnect from all TeamSpeak servers and reconnect to just one
-- **Option 2:**  
-   - Restart TeamSpeak5
-- **Option3:**  
-   1. Open OBS Studio
-   2. Go open the properties of your browser source
-   3. On the bottom of the properties press the "Refresh cache of current page" button.
+### Option 1:  
+   Disconnect from all TeamSpeak servers and reconnect to just one
+### Option 2: 
+   Restart TeamSpeak5
+### Option 3:
+1. Open OBS Studio
+2. Go open the properties of your browser source
+3. On the bottom of the properties press the "Refresh cache of current page" button.
