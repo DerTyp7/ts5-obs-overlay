@@ -1,0 +1,25 @@
+* {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: white;
+	font-size: 70pt;
+	padding: 0;
+	margin: 0;
+	-webkit-text-stroke: 3px black;
+	background-color: black;
+}
+#content div {
+	margin-top: 5px;
+}
+.content-img {
+	float: left;
+	width: 100px;
+}
+
+.content-img img {
+	display: block;
+}
+
+.content-text {
+	margin-left: 130px;
+}
