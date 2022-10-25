@@ -8,7 +8,7 @@ function main() {
 			name: "TS5 OBS Overlay",
 			description: "A simple OBS overlay for TS5 by DerTyp876",
 			content: {
-				apiKey: "b02b521c-68bb-4971-a8d2-3f9f94b44d73",
+				apiKey: CONFIG.apiKey,
 			},
 		},
 	};
