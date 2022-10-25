@@ -8,16 +8,16 @@
 		<title>TS5 - OBS Overlay</title>
 	</head>
 	<body>
+		<script src="js/objects.js"></script>
 		<script>
-			let clients = [];
-			let channels = [];
+			let clientList = new List();
+			let channelList = new List();
 			let thisClient;
 		</script>
 		<div id="content"></div>
 
 		<!--Scripts-->
 		<script src="js/utils.js"></script>
-		<script src="js/objects.js"></script>
 		<script src="js/display_content.js"></script>
 		<script src="js/parser.js"></script>
 		<script src="js/event_handlers.js"></script>

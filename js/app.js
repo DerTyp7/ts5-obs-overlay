@@ -14,13 +14,12 @@ function connectToTeamSpeak() {
 	};
 
 	ws.onopen = (event) => {
-		ws.send("Connected to TeamSpeak5");
+		// Send payload to TS5 client
 		ws.send(JSON.stringify(paylaod));
 	};
 
 	ws.onmessage = (event) => {
 		let data = JSON.parse(event.data);
-		//console.log(data);
 
 		switch (data.type) {
 			case "auth":
@@ -39,19 +38,19 @@ function connectToTeamSpeak() {
 				console.log(`No handler for event type: ${data.type}`);
 				break;
 		}
+
+		// Draw clientList in HTML object
 		drawClients();
-		console.log(clients);
-		//console.log(channels);
 	};
 
 	ws.onerror = (err) => {
 		console.error(err);
-		connectToTeamSpeak();
+		connectToTeamSpeak(); // Reconnected
 	};
 
 	ws.onclose = (event) => {
 		console.log("Disconnected: " + event.reason);
-		connectToTeamSpeak();
+		connectToTeamSpeak(); // Reconnected
 	};
 }
 connectToTeamSpeak();

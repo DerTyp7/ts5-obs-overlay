@@ -21,9 +21,7 @@ function parseClientInfos(clientInfos) {
 		result.push(
 			new Client(
 				e.id,
-				channels.filter((obj) => {
-					return obj.id === e.channelId;
-				})[0],
+				channelList.getById(e.channelId),
 				e.properties.nickname,
 				e.properties.inputMuted,
 				e.properties.outputMuted

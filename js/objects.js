@@ -23,3 +23,31 @@ class Client {
 		console.log(`Client created: ${this.id} - ${this.name}`);
 	}
 }
+
+class List {
+	constructor(items = []) {
+		this.items = items;
+	}
+
+	getById(id) {
+		return this.items.filter((obj) => {
+			return obj.id === id;
+		})[0];
+	}
+
+	add(item) {
+		if (!this.getById(item.id)) {
+			this.items.push(item);
+		} else {
+			console.error(`An item with id ${item.id} already exists in list`);
+		}
+	}
+
+	remove(item) {
+		this.items.splice(this.items.indexOf(item), 1);
+	}
+
+	clear() {
+		this.items = [];
+	}
+}

@@ -1,45 +1,39 @@
 function handleAuthMessage(data) {
 	console.log("Handling auth message");
-	channels = parseChannelInfos(data.payload.connections[0].channelInfos);
-	clients = parseClientInfos(data.payload.connections[0].clientInfos);
-	thisClient = clients.filter((obj) => {
-		return obj.id === data.payload.connections[0].clientId;
-	})[0];
+	channelList.items = parseChannelInfos(
+		data.payload.connections[0].channelInfos
+	);
+	clientList.items = parseClientInfos(data.payload.connections[0].clientInfos);
+	thisClient = clientList.getById(data.payload.connections[0].clientId);
 }
 
 function handleClientMoved(data) {
-	const client = clients.filter((obj) => {
-		return obj.id === data.payload.clientId;
-	})[0];
+	const client = clientList.getById(data.payload.clientId);
 
 	if (data.payload.newChannelId == 0) {
 		// User disconnected
 		if (client) {
 			console.log(`${client.name} disconnected`);
-			clients.splice(clients.indexOf(client), 1);
+			clientList.remove(client);
 		}
 		if (data.payload.clientId == thisClient.id) {
 			console.log("You disconnected");
-			clients = [];
+			clientList.clear();
 			//! Maybe handle channel list here too
 		}
 	} else {
 		// User moved channel
 		if (client) {
 			// Client already exists in list
-			clients.filter((obj) => {
-				return obj.id === data.payload.clientId;
-			})[0].channel = channels.filter((obj) => {
-				return obj.id === data.payload.newChannelId;
-			})[0];
+			clientList.getById(data.payload.clientId).channel = channelList.getById(
+				data.payload.newChannelId
+			);
 		} else {
 			// New Client has to be created
-			clients.push(
+			clientList.add(
 				new Client(
 					data.payload.clientId,
-					channels.filter((obj) => {
-						return obj.id === data.payload.newChannelId;
-					})[0],
+					channelList.getById(data.payload.newChannelId),
 					data.payload.properties.nickname
 				)
 			);
@@ -48,33 +42,27 @@ function handleClientMoved(data) {
 }
 
 function handleClientPropertiesUpdate(data) {
-	let client = clients.filter((obj) => {
-		return obj.id === data.payload.clientId;
-	})[0];
+	let client = clientList.getById(data.payload.clientId);
 	if (data.payload.properties.channelGroupInheritedChannelId == 0) {
 		if (client) {
-			clients.splice(clients.indexOf(client), 1);
+			clientList.remove(client);
 		}
 	} else {
 		if (client) {
-			client.channel = channels.filter((obj) => {
-				return (
-					obj.id === data.payload.properties.channelGroupInheritedChannelId
-				);
-			})[0];
+			client.channel = channelList.getById(
+				data.payload.properties.channelGroupInheritedChannelId
+			);
 
 			client.name = data.payload.properties.nickname;
 			client.inputMuted = data.payload.properties.inputMuted;
 			client.outputMuted = data.payload.properties.outputMuted;
 		} else {
-			clients.push(
+			clientList.add(
 				new Client(
 					data.payload.clientId,
-					channels.filter((obj) => {
-						return (
-							obj.id === data.payload.properties.channelGroupInheritedChannelId
-						);
-					})[0],
+					channelList.getById(
+						data.payload.properties.channelGroupInheritedChannelId
+					),
 					data.payload.properties.nickname,
 					data.payload.properies.inputMuted,
 					data.payload.properies.outputMuted
@@ -85,9 +73,7 @@ function handleClientPropertiesUpdate(data) {
 }
 
 function handleTalkStatusChanged(data) {
-	let client = clients.filter((obj) => {
-		return obj.id === data.payload.clientId;
-	})[0];
+	let client = clientList.getById(data.payload.clientId);
 	if (client) {
 		client.talkStatus = data.payload.status;
 	}
