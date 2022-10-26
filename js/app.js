@@ -56,6 +56,9 @@ function main() {
 
 	ws.onclose = (event) => {
 		console.log("Disconnected: " + event.reason);
+		clientList.clear();
+		channelList.clear();
+		drawClients();
 		main(); // Reconnected
 	};
 }
