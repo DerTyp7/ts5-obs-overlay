@@ -1,5 +1,5 @@
 const CONFIG = {
-	apiKey: "",
+	apiKey: "9811add4-5ee3-436d-ae9d-d98ff53a1f12",
 	style: {
 		fontBackground: "rgba(19, 20, 33, 0.5)",
 		fontColor: "#ffffff",

@@ -23,10 +23,15 @@ function main() {
 
 	ws.onmessage = (event) => {
 		let data = JSON.parse(event.data);
-		console.log(data);
+		// console.log(data);
 		switch (data.type) {
 			case "auth":
 				handleAuthMessage(data);
+				console.log(
+					"%c --> API-KEY: %s ",
+					"color:red;font-weight:bold;",
+					` ${data.payload.apiKey}`
+				);
 				break;
 			case "clientMoved":
 				handleClientMoved(data);

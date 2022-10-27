@@ -1,5 +1,4 @@
 function handleAuthMessage(data) {
-	console.log("Handling auth message");
 	channelList.setItems(
 		parseChannelInfos(data.payload.connections[0].channelInfos)
 	);
