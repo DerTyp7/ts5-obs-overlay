@@ -8,7 +8,7 @@ function main() {
       name: "TS5 OBS Overlay",
       description: "A simple OBS overlay for TS5 by DerTyp876",
       content: {
-        apiKey: CONFIG.apiKey,
+        apiKey: apiKey,
       },
     },
   };
@@ -27,11 +27,7 @@ function main() {
     switch (data.type) {
       case "auth":
         handleAuthMessage(data);
-        console.log(
-          "%c --> API-KEY: %s ",
-          "color:red;font-weight:bold;",
-          ` ${data.payload.apiKey}`
-        );
+        apiKey = data.payload.apiKey;
         break;
       case "clientMoved":
         handleClientMoved(data);
@@ -54,15 +50,16 @@ function main() {
   };
 
   ws.onerror = (err) => {
-    console.error(err);
+    console.log(err);
     ws.close();
     return;
   };
 
   ws.onclose = (event) => {
-    console.log("Disconnected: " + event.reason);
+    console.log("Disconnected");
     clientList.clear();
     channelList.clear();
+    console.log(clientList);
     drawClients();
     main(); // Reconnected
   };
