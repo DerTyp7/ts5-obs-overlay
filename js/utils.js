@@ -1,10 +1,10 @@
 function getClientsInChannel(channel) {
-	let result = [];
+  let result = [];
 
-	clientList.items.forEach((e) => {
-		if (e.channel.id == channel.id) {
-			result.push(e);
-		}
-	});
-	return result;
+  clientList.items.forEach((e) => {
+    if (e.channel.id == channel.id) {
+      result.push(e);
+    }
+  });
+  return result;
 }
