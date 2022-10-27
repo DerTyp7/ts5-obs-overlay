@@ -1,5 +1,5 @@
 function main() {
-	const ws = new WebSocket("ws://localhost:5899");
+	const ws = new WebSocket(`ws://localhost:${CONFIG.remoteAppPort}`);
 	const paylaod = {
 		type: "auth",
 		payload: {
