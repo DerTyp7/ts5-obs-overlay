@@ -13,28 +13,26 @@ Made with the "Remote App" feature of TeamSpeak5
 > If you were connected to multiple servers and the overlay crashed, try disconnecting from **all** servers and reconnecting to **only one**.
 
 ## Setup
-1. Download the latest release of the project -> https://github.com/DerTyp876/ts5-obs-overlay/releases/latest
-2. Extract the archive and move the folder to where you want it to be
-3. Open your TeamSpeak5 client and go to 
+1. Download the [latest release](https://github.com/DerTyp876/ts5-obs-overlay/releases/latest) of this project & extract the archive to a folder of your choice
+2. Open your TeamSpeak5 client and go to 
 `settings -> Remote Apps`
-4. Enable the "Remote Apps" feature
+3. Enable the "Remote Apps" feature
 ![image](https://user-images.githubusercontent.com/76851529/197849050-d4e28b8e-c150-4462-8871-f77ec672ee49.png)
 
-5. Open your OBS Studio
-6. Add a new **browser source** to your scene
+4. Open your OBS Studio & add a new **browser source** to your scene
 ![image](https://user-images.githubusercontent.com/76851529/197849644-9396fb9c-4943-4cb2-a511-062ffcd60404.png)
 
-7. In the properties of your new browser source, select the Local File check box
-8. Click "Browse" next to the newly apperared "Local file" field
-9. Now select the in step 1 downloaded `overlay.html`
-10. Set the "Width" to `2000` and the "Height" to `1000` (This is just my own preference. If you have better values, use them)  
+5. In the properties of your new browser source, select the Local File check box
+6. Click "Browse" next to the newly apperared "Local file" field
+7. Now select the in step 1 downloaded `overlay.html`
+8. Set the "Width" to `2000` and the "Height" to `1000` (This is just my own preference. If you have better values, use them)  
 ![image](https://user-images.githubusercontent.com/76851529/197849886-679b200b-6d42-439e-bce6-44c6df67ffcc.png)  
 
-11. Now connect to a TeamSpeak server and check if it works. You need to **accept** the remote app in your TeamSpeak notifications  
+9. Now connect to a TeamSpeak server and check if it works. You need to **accept** the remote app in your TeamSpeak notifications  
 ![image](https://user-images.githubusercontent.com/76851529/197850151-ad057277-fe3d-427e-b21b-1d2b4875c70b.png)  
 **Done**
 
-12. **optional** If you want to get rid of this manually accepting the remote app (step 11) do as follows:
+10. **optional** If you want to get rid of this manually accepting the remote app (step 9) do as follows:
     1. Open the file "overlay.html" in your browser
     2. Open the Inspector by pressing `F12` or `right-click -> inspection`
     3. Go to the console tab  
@@ -45,7 +43,7 @@ Made with the "Remote App" feature of TeamSpeak5
     6. Paste the copied key into the quotation mark of "apiKey"
     ![image](https://user-images.githubusercontent.com/76851529/198371229-a6165e8d-acac-4a9c-b4c5-341be9d00826.png)
     7. Now do [Option 3 of the troubleshooting guide]("#option-3") or maybe restart your OBS
-    > **Warning** The API-Key changes from time to time. You may need to update the API-Key sometimes (delete the old API-Key & repeat step 12).   
+    > **Warning** The API-Key changes from time to time. You may need to update the API-Key sometimes (delete the old API-Key & repeat step 10).   
     > If someone knows how I can prevent this, please tell me
 
 ## Configuration
@@ -64,5 +62,5 @@ Possible solutions to fix the overlay.
 2. Go open the properties of your browser source
 3. On the bottom of the properties press the "Refresh cache of current page" button.
 ### Option 4:
-If you use an API-Key in `config.js` ([setup step 12](#setup)), try to remove the key from the file.  
-If it works now, you probably need to delete the old API-Key and repeat [step 12 of the setup instructions](#setup) because the API-Key has changed.
+If you use an API-Key in `config.js` ([setup step 10](#setup)), try to remove the key from the file.  
+If it works now, you probably need to delete the old API-Key and repeat [step 10 of the setup instructions](#setup) because the API-Key has changed.
