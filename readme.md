@@ -3,7 +3,7 @@
 Made with the "Remote App" feature of TeamSpeak5
 - [A OBS-Overlay for TeamSpeak5](#a-obs-overlay-for-teamspeak5)
   - [Setup](#setup)
-  - [Config](#config)
+  - [Configuration](#configuration)
   - [Troubleshooting](#troubleshooting)
     - [Option 1:](#option-1)
     - [Option 2:](#option-2)
