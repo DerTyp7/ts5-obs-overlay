@@ -12,8 +12,7 @@
 > If you were connected to multiple servers and the overlay crashed, try disconnecting from **all** servers and reconnecting to **only one**.
 
 ## Setup
-1. Download this project optionally as archive
-![image](https://user-images.githubusercontent.com/76851529/197848843-4a36593c-0e14-46d4-9b6b-bd17b399a49c.png)
+1. Download the latest release of the project -> https://github.com/DerTyp876/ts5-obs-overlay/releases/latest
 2. Extract the archive and move the folder to where you want it to be
 3. Open your TeamSpeak5 client and go to 
 `settings -> Remote Apps`
