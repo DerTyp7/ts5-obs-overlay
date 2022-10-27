@@ -30,8 +30,9 @@ Made with the "Remote App" feature of TeamSpeak5
 10. Set the "Width" to `2000` and the "Height" to `1000` (This is just my own preference. If you have better values, use them)  
 ![image](https://user-images.githubusercontent.com/76851529/197849886-679b200b-6d42-439e-bce6-44c6df67ffcc.png)  
 
-11. Now connect to a TeamSpeak server and check if it works. You need to **accept** the remote app in your TeamSpeak notifications
-![image](https://user-images.githubusercontent.com/76851529/197850151-ad057277-fe3d-427e-b21b-1d2b4875c70b.png)
+11. Now connect to a TeamSpeak server and check if it works. You need to **accept** the remote app in your TeamSpeak notifications  
+![image](https://user-images.githubusercontent.com/76851529/197850151-ad057277-fe3d-427e-b21b-1d2b4875c70b.png)  
+**Done**
 
 12. **optional** If you want to get rid of this manually accepting the remote app (step 11) do as follows:
     1. Open the file "overlay.html" in your browser
