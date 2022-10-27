@@ -6,7 +6,7 @@ function parseChannelInfos(channelInfos) {
   rootChannels.forEach((rc) => {
     result.push(new Channel(rc.id, rc.properties.name));
 
-    if (rc.id in subChannels) {
+    if (subChannels !== null && rc.id in subChannels) {
       subChannels[rc.id].forEach((sc) => {
         result.push(new Channel(sc.id, sc.properties.name));
       });
