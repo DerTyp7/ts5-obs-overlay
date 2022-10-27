@@ -47,9 +47,10 @@ Made with the "Remote App" feature of TeamSpeak5
     > **Warning** The API-Key changes from time to time. You may need to update the API-Key sometimes (delete the old API-Key & repeat step 12).   
     > If someone knows how I can prevent this, please tell me
 
-## Config
-In the `config.js` file, which is located in the same folder as the `overlay.html` file, you can make various settings for the appearance of the overlay.
->**_NOTE_** If your change something in the config file you have to do [Option 3 of the troubleshooting below](#option-3).  
+## Configuration
+In the `config.js` file, which is located in the same folder as the `overlay.html` file, you can make various settings for the appearance of the overlay.  
+Since everything is written in simple css and html, you can change the `css/style.css` file to your liking.
+>**_NOTE_** If your change something in the files you have to do [Option 3 of the troubleshooting below](#option-3).  
 
 ## Troubleshooting
 Possible solutions to fix the overlay.
