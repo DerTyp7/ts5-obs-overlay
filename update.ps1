@@ -5,7 +5,7 @@ Write-Output "Current version: $currentVersion"
 
 Write-Output "Searching for newest version..."
 $newestVersionString = ""
-$req = Invoke-WebRequest https://github.com/DerTyp876/ts5-obs-overlay/releases/tag/v0.1.2
+$req = Invoke-WebRequest https://github.com/DerTyp876/ts5-obs-overlay/releases/tag/latest
 
 foreach ($tag in $req.ParsedHtml.body.getElementsByTagName('h1')) {
   if ($tag.innerText[0] -eq "v") {
@@ -37,7 +37,7 @@ if ($newestVersionString -ne "") {
     mkdir ./temp
     attrib +h ./temp
     Write-Output "Downloading newer version..."
-    Invoke-WebRequest -Uri "https://github.com/DerTyp876/ts5-obs-overlay/archive/refs/tags/v0.1.2.zip" -OutFile "./temp/$newestVersionString.zip"
+    Invoke-WebRequest -Uri "https://github.com/DerTyp876/ts5-obs-overlay/archive/refs/tags/$newestVersionString.zip" -OutFile "./temp/$newestVersionString.zip"
     Write-Output "Extracting archive..."
     Expand-Archive -Path "./temp/$newestVersionString.zip" -DestinationPath "./temp/"
     Get-ChildItem -Path "./temp/ts5-obs-overlay-$($newestVersionString -replace 'v')" -Recurse | Move-Item -Destination "./"
