@@ -5,7 +5,7 @@ Write-Output "Current version: $currentVersion"
 
 Write-Output "Searching for newest version..."
 $newestVersionString = ""
-$req = Invoke-WebRequest https://github.com/DerTyp876/ts5-obs-overlay/releases/tag/latest
+$req = Invoke-WebRequest https://github.com/DerTyp876/ts5-obs-overlay/releases/latest
 
 foreach ($tag in $req.ParsedHtml.body.getElementsByTagName('h1')) {
   if ($tag.innerText[0] -eq "v") {
@@ -32,7 +32,7 @@ if ($newestVersionString -ne "") {
   else {
     Write-Output "Updating to newer version..."
 
-    Remove-Item * -Recurse -Force -Confirm -Exclude "update.ps1"
+    Remove-Item * -Recurse -Force -Confirm
 
     mkdir ./temp
     attrib +h ./temp
