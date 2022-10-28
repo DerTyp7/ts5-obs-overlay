@@ -4,7 +4,7 @@ function drawClients() {
   result = "";
   if (thisClient) {
     getClientsInChannel(thisClient.channel).forEach((c) => {
-      result += `<div style="color:${CONFIG.style.fontColor}; font-size:${CONFIG.style.fontSize}">`;
+      result += `<div class="client-div" style="color:${CONFIG.style.fontColor}; font-size:${CONFIG.style.fontSize}">`;
       result += '<div class="client-img-div">';
       if (c.outputMuted) {
         result += '	<img src="img/muted_output.svg" />';

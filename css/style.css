@@ -2,12 +2,13 @@
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
 }
-#content div {
+
+.client-div {
   margin-top: 15px;
 }
 .client-img-div {
   float: left;
-  width: 100px;
+  width: 107px;
 }
 
 .client-img-div img {
