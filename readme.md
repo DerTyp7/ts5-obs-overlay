@@ -3,6 +3,9 @@
 Made with the "Remote App" feature of TeamSpeak5
 - [A OBS-Overlay for TeamSpeak5](#a-obs-overlay-for-teamspeak5)
   - [Setup](#setup)
+  - [Update](#update) 
+    - [Use script](#use-script)
+    - [Manually](#manually)
   - [Configuration](#configuration)
   - [Troubleshooting](#troubleshooting)
     - [Option 1:](#option-1)
@@ -32,7 +35,7 @@ Made with the "Remote App" feature of TeamSpeak5
 ![image](https://user-images.githubusercontent.com/76851529/197850151-ad057277-fe3d-427e-b21b-1d2b4875c70b.png)  
 **Done**
 ## Update
-### Automatic (Scripts)
+### Use script
 If you want to update the project automatically, just double-click the "update.bat" file **OR** open a new console in the project directory and run the "update.ps1" command.
 
 ### Manually
