@@ -12,8 +12,7 @@ Made with the "Remote App" feature of TeamSpeak5
     - [Option 2:](#option-2)
     - [Option 3:](#option-3)
 
->**_WARNING:_** This overlay works only if you are connected to **one** server only.  
-> If you were connected to multiple servers and the overlay crashed, try disconnecting from **all** servers and reconnecting to **only one**.
+>**_WARNING:_** This overlay works only show the first server you were connected to.
 
 ## Setup
 1. Download the [latest release](https://github.com/DerTyp876/ts5-obs-overlay/releases/latest) of this project & extract the archive to a folder of your choice
