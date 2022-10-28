@@ -5,7 +5,7 @@ function drawClients() {
   if (thisClient) {
     getClientsInChannel(thisClient.channel).forEach((c) => {
       result += `<div style="color:${CONFIG.style.fontColor}; font-size:${CONFIG.style.fontSize}">`;
-      result += '<div class="content-img">';
+      result += '<div class="client-img-div">';
       if (c.outputMuted) {
         result += '	<img src="img/muted_output.svg" />';
       } else if (c.inputMuted) {
@@ -16,7 +16,7 @@ function drawClients() {
         result += '	<img src="img/off.svg" />';
       }
       result += "</div>";
-      result += `<div class="content-text"
+      result += `<div class="client-text-div"
 			 style="-webkit-text-stroke:${CONFIG.style.fontStrokeSize} ${CONFIG.style.fontStrokeColor};
 			"><p style="background:${CONFIG.style.fontBackground};">${c.name}</p></div></div>`;
     });

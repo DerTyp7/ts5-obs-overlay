@@ -1,26 +1,24 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  padding: 0;
-  margin: 0;
 }
 #content div {
   margin-top: 5px;
 }
-.content-img {
+.client-img-div {
   float: left;
   width: 100px;
 }
 
-.content-img img {
+.client-img-div img {
   display: block;
 }
 
-.content-text {
+.client-text-div {
   margin-left: 130px;
 }
 
-.content-text p {
+.client-text-div p {
   display: inline;
   padding-left: 20px;
   padding-right: 20px;
