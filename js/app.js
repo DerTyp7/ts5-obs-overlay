@@ -59,7 +59,6 @@ function main() {
     console.log("Disconnected");
     clientList.clear();
     channelList.clear();
-    console.log(clientList);
     drawClients();
     main(); // Reconnected
   };

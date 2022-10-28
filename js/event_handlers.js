@@ -29,6 +29,7 @@ function handleClientMoved(data) {
         data.payload.newChannelId
       );
     } else {
+      console.log(data.payload);
       // New Client has to be created
       clientList.add(
         new Client(
