@@ -31,6 +31,12 @@ Made with the "Remote App" feature of TeamSpeak5
 9. Now connect to a TeamSpeak server and check if it works. You need to **accept** the remote app in your TeamSpeak notifications  
 ![image](https://user-images.githubusercontent.com/76851529/197850151-ad057277-fe3d-427e-b21b-1d2b4875c70b.png)  
 **Done**
+## Update
+### Automatic (Scripts)
+If you want to update the project automatically, just double-click the "update.bat" file **OR** open a new console in the project directory and run the "update.ps1" command.
+
+### Manually
+To manually update just delete the hole project directory and repeat the [setup](#setup) above :).
 
 ## Configuration
 In the `config.js` file, which is located in the same folder as the `overlay.html` file, you can make various settings for the appearance of the overlay.  
