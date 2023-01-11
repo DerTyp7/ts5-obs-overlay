@@ -35,7 +35,10 @@ Made with the "Remote App" feature of TeamSpeak5
 **Done**
 ## Update
 ### Use script
-If you want to update the project automatically, just double-click the "update.bat" file **OR** open a new console in the project directory and run the "update.ps1" command.
+If you want to update the project automatically, just double-click the "update.bat" file **OR** open a new console in the project directory and run the "update.ps1" command.  
+If you encounter problems because of the microsoft execution policy open a console in the project directory and run  
+`powershell -ExecutionPolicy Bypass -File update.ps1`  
+https://stackoverflow.com/questions/4037939/powershell-says-execution-of-scripts-is-disabled-on-this-system 
 
 ### Manually
 To manually update just delete the hole project directory and repeat the [setup](#setup) above :).
