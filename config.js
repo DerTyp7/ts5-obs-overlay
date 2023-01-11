@@ -10,5 +10,5 @@ const CONFIG = {
     fontStrokeColor: "#000000",
   },
   hideSelf: false, // Hide yourself in the overlay
-  hideSilent: true, // Only show talking people
+  hideSilent: false, // Only show talking people
 };

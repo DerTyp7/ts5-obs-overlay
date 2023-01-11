@@ -3,7 +3,7 @@ function getClientsInChannel(channel) {
 
   clientList.items.forEach((e) => {
     if (e.channel) {
-      if (e.channel.id == channel.id && !(CONFIG.hideSelf && selfClient && e.id == selfClient.id)) {
+      if (e.channel.id == channel.id) {
         result.push(e);
       }
     }

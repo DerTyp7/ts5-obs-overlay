@@ -6,14 +6,7 @@ class Channel {
 }
 
 class Client {
-  constructor(
-    id,
-    channel,
-    name,
-    inputMuted = false,
-    outputMuted = false,
-    talkStatus = 0
-  ) {
+  constructor(id, channel, name, inputMuted = false, outputMuted = false, talkStatus = 0) {
     this.id = id;
     this.channel = channel;
     this.name = name;
@@ -25,6 +18,12 @@ class Client {
 
   isMuted() {
     return this.inputMuted == true || this.outputMuted == true;
+  }
+
+  isHidden() {
+    return (
+      (CONFIG.hideSilent && (this.talkStatus == 0 || this.isMuted())) || (CONFIG.hideSelf && this.id == selfClient.id)
+    );
   }
 }
 
