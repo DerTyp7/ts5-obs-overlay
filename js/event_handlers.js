@@ -25,10 +25,11 @@ function handleClientMoved(data) {
     }
 
     // If the disconnected client is the current user
-    if (data.payload.clientId == thisClient.id) {
+    if (data.payload.clientId == selfClient.id) {
       //* NOTE: since this app does support multiple servers yet, we expect the user to be connected to NO servers at this point
       console.log("You disconnected");
       clientList.clear(); // remove all clients.
+      channelList.clear();
     }
   } else {
     // Client switched the channel OR JOINED the server to a channel
