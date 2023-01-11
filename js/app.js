@@ -1,6 +1,7 @@
+// Main entry point to the app
 function main() {
   const ws = new WebSocket(`ws://localhost:${CONFIG.remoteAppPort}`);
-  const paylaod = {
+  const payload = {
     type: "auth",
     payload: {
       identifier: "de.tealfire.obs",
@@ -19,7 +20,7 @@ function main() {
 
   ws.onopen = (event) => {
     // Send payload to TS5 client
-    ws.send(JSON.stringify(paylaod));
+    ws.send(JSON.stringify(payload));
   };
 
   ws.onmessage = (event) => {
