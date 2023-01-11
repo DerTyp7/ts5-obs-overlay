@@ -1,7 +1,7 @@
 Write-Output "Starting update..."
 
 $currentVersionString = (Get-Content .\meta.json | ConvertFrom-Json).version
-Write-Output "Current version: $currentVersion"
+Write-Output "Current version: $currentVersionString"
 
 Write-Output "Searching for newest version..."
 $newestVersionString = ""
@@ -14,19 +14,13 @@ foreach ($tag in $req.ParsedHtml.body.getElementsByTagName('h1')) {
 }
 
 if ($newestVersionString -ne "") {
-  Write-Output "Newest version found: $newestVersion"
+  Write-Output "Newest version found: $newestVersionString"
 
 
-  $currentVersion = ($currentVersionString -replace "v").split(".")
-  $newestVersion = ($newestVersionString -replace "v").split(".")
+  $currentVersion = ($currentVersionString -replace "v")
+  $newestVersion = ($newestVersionString -replace "v")
 
-  if ($currentVersion[0] -gt $newestVersion[0]) {
-    Write-Output "Current version is up to date!"
-  }
-  elseif ($currentVersion[1] -gt $newestVersion[1]) {
-    Write-Output "Current version is up to date!"
-  }
-  elseif ($currentVersion[2] -ge $newestVersion[2]) {
+  if ([System.Version]$currentVersion -gt [System.Version]$newestVersion) {
     Write-Output "Current version is up to date!"
   }
   else {
