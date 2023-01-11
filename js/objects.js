@@ -22,6 +22,10 @@ class Client {
     this.talkStatus = talkStatus;
     console.log(`Client created: ${this.id} - ${this.name}`);
   }
+
+  isMuted() {
+    return this.inputMuted == true || this.outputMuted == true;
+  }
 }
 
 class List {
