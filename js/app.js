@@ -13,7 +13,7 @@ function main() {
     type: "auth",
     payload: {
       identifier: "de.tealfire.obs",
-      version: "0.0.1", // TODO take version from meta.json
+      version: "0.1.9",
       name: "TS5 OBS Overlay",
       description: "A simple OBS overlay for TS5 by DerTyp876",
       content: {
