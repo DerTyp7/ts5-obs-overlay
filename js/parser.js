@@ -1,3 +1,4 @@
+// Parse teamspeak channel structure into our objects
 function parseChannelInfos(channelInfos) {
   let result = [];
   let rootChannels = channelInfos.rootChannels;
@@ -15,6 +16,7 @@ function parseChannelInfos(channelInfos) {
   return result;
 }
 
+// Parse teamspeak clients into our objects
 function parseClientInfos(clientInfos) {
   let result = [];
   clientInfos.forEach((e) => {
