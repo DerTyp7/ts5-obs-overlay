@@ -7,4 +7,6 @@ const CONFIG = {
     fontStrokeSize: "3px",
     fontStrokeColor: "#000000",
   },
+  hideSelf: false,
+  hideSilent: false,
 };

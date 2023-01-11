@@ -15,6 +15,7 @@ function main() {
 
   clientList.clear();
   channelList.clear();
+  selfClient = null;
 
   ws.onopen = (event) => {
     // Send payload to TS5 client
