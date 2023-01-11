@@ -2,15 +2,13 @@ function drawClients() {
   let elem = document.getElementById("content");
 
   result = "";
-  if (thisClient) {
-    getClientsInChannel(thisClient.channel).forEach((c) => {
+  if (selfClient) {
+    getClientsInChannel(selfClient.channel).forEach((c) => {
       isHidden = CONFIG.hideSilent && (c.talkStatus == 0 || c.isMuted());
 
-      result += `<div class="client-div" ${
-        isHidden ? "hidden" : ""
-      } style="color:${CONFIG.style.fontColor}; font-size:${
-        CONFIG.style.fontSize
-      }">`;
+      result += `<div class="client-div" ${isHidden ? "hidden" : ""} style="color:${
+        CONFIG.style.fontColor
+      }; font-size:${CONFIG.style.fontSize}">`;
       result += '<div class="client-img-div">';
       if (c.outputMuted) {
         result += '	<img src="img/muted_output.svg" />';

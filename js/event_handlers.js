@@ -1,13 +1,7 @@
 function handleAuthMessage(data) {
-  channelList.setItems(
-    parseChannelInfos(data.payload.connections[0].channelInfos)
-  );
-  clientList.setItems(
-    parseClientInfos(data.payload.connections[0].clientInfos)
-  );
-  thisClient = clientList.getById(data.payload.connections[0].clientId);
-
-  selfClient = data.payload.connections[0].clientInfos.find((client) => client.id == data.payload.connections[0].clientId);
+  channelList.setItems(parseChannelInfos(data.payload.connections[0].channelInfos));
+  clientList.setItems(parseClientInfos(data.payload.connections[0].clientInfos));
+  selfClient = clientList.getById(data.payload.connections[0].clientId);
 }
 
 function handleClientMoved(data) {
@@ -27,9 +21,7 @@ function handleClientMoved(data) {
     // User moved channel
     if (client) {
       // Client already exists in list
-      clientList.getById(data.payload.clientId).channel = channelList.getById(
-        data.payload.newChannelId
-      );
+      clientList.getById(data.payload.clientId).channel = channelList.getById(data.payload.newChannelId);
     } else {
       console.log(data.payload);
       // New Client has to be created
@@ -52,9 +44,7 @@ function handleClientPropertiesUpdate(data) {
     }
   } else {
     if (client) {
-      client.channel = channelList.getById(
-        data.payload.properties.channelGroupInheritedChannelId
-      );
+      client.channel = channelList.getById(data.payload.properties.channelGroupInheritedChannelId);
 
       client.name = data.payload.properties.nickname;
       client.inputMuted = data.payload.properties.inputMuted;
@@ -63,9 +53,7 @@ function handleClientPropertiesUpdate(data) {
       clientList.add(
         new Client(
           data.payload.clientId,
-          channelList.getById(
-            data.payload.properties.channelGroupInheritedChannelId
-          ),
+          channelList.getById(data.payload.properties.channelGroupInheritedChannelId),
           data.payload.properties.nickname,
           data.payload.properies.inputMuted,
           data.payload.properies.outputMuted

@@ -1,35 +1,42 @@
-// Main entry point to the app
+// Main entry point
 function main() {
-  const ws = new WebSocket(`ws://localhost:${CONFIG.remoteAppPort}`);
-  const payload = {
-    type: "auth",
-    payload: {
-      identifier: "de.tealfire.obs",
-      version: "0.0.1",
-      name: "TS5 OBS Overlay",
-      description: "A simple OBS overlay for TS5 by DerTyp876",
-      content: {
-        apiKey: apiKey,
-      },
-    },
-  };
+  let authenticated = false; // using this bool to determine if an user is already authenticated
 
+  // Reset variables. Important so that the app can easly restart or reconnected.
   clientList.clear();
   channelList.clear();
   selfClient = null;
 
-  ws.onopen = (event) => {
-    // Send payload to TS5 client
-    ws.send(JSON.stringify(payload));
+  // Initiliaze websocket connection to TS5 client
+  const ws = new WebSocket(`ws://localhost:${CONFIG.remoteAppPort}`);
+  const initalPayload = {
+    type: "auth",
+    payload: {
+      identifier: "de.tealfire.obs",
+      version: "0.0.1", // TODO take version from meta.json
+      name: "TS5 OBS Overlay",
+      description: "A simple OBS overlay for TS5 by DerTyp876",
+      content: {
+        apiKey: localStorage.getItem("apiKey") ?? "",
+      },
+    },
   };
 
+  ws.onopen = () => {
+    // Send authentication payload to TS5 client
+    ws.send(JSON.stringify(initalPayload));
+  };
+
+  // Handle websockets
   ws.onmessage = (event) => {
     let data = JSON.parse(event.data);
-    // console.log(data);
+    console.log(data);
     switch (data.type) {
       case "auth":
         handleAuthMessage(data);
-        apiKey = data.payload.apiKey;
+        localStorage.setItem("apiKey", data.payload.apiKey);
+        authenticated = true;
+        //console.log(apiKey);
         break;
       case "clientMoved":
         handleClientMoved(data);
@@ -58,10 +65,22 @@ function main() {
   };
 
   ws.onclose = (event) => {
+    // Need to check if the connection got closed while the user was connected.
+    // Because TS does not return a proper authentication error.
+    // closed and not authenticated -> auth error or ts5 restarted/closed
+    // closed and authenticated -> no auth error, app/obs was just closed by user
+    if (authenticated == false) {
+      localStorage.setItem("apiKey", "");
+    }
+
+    console.log(event);
     console.log("Disconnected");
+
+    // Since the user disconnected, we need to clear all clients and channel
     clientList.clear();
     channelList.clear();
-    drawClients();
+
+    drawClients(); // Redraw overlay to remove all clients
     main(); // Reconnected
   };
 }
