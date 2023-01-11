@@ -6,6 +6,8 @@ function handleAuthMessage(data) {
     parseClientInfos(data.payload.connections[0].clientInfos)
   );
   thisClient = clientList.getById(data.payload.connections[0].clientId);
+
+  selfClient = data.payload.connections[0].clientInfos.find((client) => client.id == data.payload.connections[0].clientId);
 }
 
 function handleClientMoved(data) {
