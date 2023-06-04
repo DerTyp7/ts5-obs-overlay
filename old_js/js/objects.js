@@ -1,13 +1,21 @@
+class Connection {
+  constructor(id) {
+    this.id = +id;
+  }
+}
+
 class Channel {
-  constructor(id, name) {
-    this.id = id;
+  constructor(id, connectionId, name) {
+    this.id = +id;
+    this.connectionId = +connectionId;
     this.name = name;
   }
 }
 
 class Client {
-  constructor(id, channel, name, inputMuted = false, outputMuted = false, talkStatus = 0) {
-    this.id = id;
+  constructor(id, connectionId, channel, name, inputMuted = false, outputMuted = false, talkStatus = 0) {
+    this.id = +id;
+    this.connectionId = +connectionId;
     this.channel = channel;
     this.name = name;
     this.inputMuted = inputMuted;
@@ -32,18 +40,23 @@ class List {
     this.items = items;
   }
 
-  getById(id) {
+  getByIds(id, connectionId) {
+    id = +id;
+    connectionId = +connectionId;
+
+    console.log(id, connectionId);
     return this.items.filter((obj) => {
-      return obj.id === id;
+      return obj.id == id && obj.connectionId == connectionId;
     })[0];
   }
 
   add(item) {
-    if (!this.getById(item.id)) {
-      this.items.push(item);
-    } else {
-      console.error(`An item with id ${item.id} already exists in list`);
-    }
+    this.items.push(item);
+    // if (!this.getById(item.id)) {
+    //   this.items.push(item);
+    // } else {
+    //   console.error(`An item with id ${item.id} already exists in list`);
+    // }
   }
 
   remove(item) {

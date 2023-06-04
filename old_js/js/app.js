@@ -49,6 +49,8 @@ function main() {
         break;
       case "serverPropertiesUpdated":
         ws.close();
+      case "clientSelfPropertyUpdated":
+        handleClientSelfPropertyUpdated(data);
       default:
         console.log(`No handler for event type: ${data.type}`);
         break;
