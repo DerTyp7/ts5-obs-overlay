@@ -40,7 +40,7 @@ export class TS5Connection {
         name: "TS5 OBS Overlay",
         description: "A OBS overlay for TS5 by DerTyp876",
         content: {
-          apiKey: localStorage.getItem("apiKey") || "",
+          apiKey: localStorage.getItem("apiKey") ?? "",
         },
       },
     };
@@ -49,6 +49,10 @@ export class TS5Connection {
       // Send authentication payload to TS5 client
       console.log("Sending auth payload...")
       this.ws.send(JSON.stringify(initalPayload));
+    };
+
+    this.ws.onclose = (event) => {
+      console.log("WebSocket connection closed", event);
     };
 
     // Handle messages received from TS5 client
