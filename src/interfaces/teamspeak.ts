@@ -36,11 +36,11 @@ export interface IChannel {
 }
 
 export interface IConnection {
-  channelInfos: IChannelInfos;
+  channelInfos?: IChannelInfos;
   clientId: number;
-  clientInfos: IClientInfo[];
+  clientInfos?: IClientInfo[];
   id: number;
-  properties: IConnectionProperties;
+  properties?: IServerProperties;
 }
 
 
@@ -144,7 +144,7 @@ export interface IClientProperties {
   volumeModificator: number;
 }
 
-export interface IConnectionProperties {
+export interface IServerProperties {
   antiFloodPointsNeededCommandBlock: number;
   antiFloodPointsNeededIpBlock: number;
   antiFloodPointsNeededPluginBlock: number;
@@ -268,4 +268,32 @@ export interface IAuthMessage {
     apiKey: string;
     connections: IConnection[];
   };
+}
+
+export interface IServerPropertiesUpdatedMessage {
+  type: "serverPropertiesUpdated";
+  payload: {
+    connectionId: number;
+    properties: IServerProperties;
+  };
+}
+
+export interface IConnectStatusChangedMessage {
+  type: "connectStatusChanged";
+  payload: {
+    connectionId: number;
+    error: number;
+    info: {
+      clientId: number;
+    }
+    status: number;
+  };
+}
+
+export interface IChannelsMessage {
+  type: "channels";
+  payload: {
+    connectionId: number;
+    info: IChannelInfos
+  }
 }

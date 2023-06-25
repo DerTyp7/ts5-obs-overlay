@@ -1,4 +1,4 @@
-import { IAuthMessage, IAuthSenderPayload, IChannel, IClient, IClientInfo, IClientMovedMessage, IClientPropertiesUpdatedMessage, IClientSelfPropertyUpdatedMessage, IConnection, ITalkStatusChangedMessage } from "interfaces/teamspeak";
+import { IAuthMessage, IAuthSenderPayload, IChannel, IChannelInfos, IChannelsMessage, IClient, IClientInfo, IClientMovedMessage, IClientPropertiesUpdatedMessage, IClientSelfPropertyUpdatedMessage, IConnectStatusChangedMessage, IConnection, IServerPropertiesUpdatedMessage, ITalkStatusChangedMessage } from "interfaces/teamspeak";
 
 
 // Establish connection to TS5 client
@@ -55,6 +55,9 @@ export class TS5Connection {
     // See TS5MessageHandler class
     this.ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
+
+      console.log(data)
+
       switch (data.type) {
         case "auth":
           this.messageHandler.handleAuthMessage(data);
@@ -69,10 +72,17 @@ export class TS5Connection {
           this.messageHandler.handleTalkStatusChangedMessage(data);
           break;
         case "serverPropertiesUpdated":
-          this.ws.close();
+          this.messageHandler.handleServerPropertiesUpdatedMessage(data);
+          //this.ws.close();
+          break;
+        case "connectStatusChanged":
+          this.messageHandler.handleConnectStatusChangedMessage(data);
           break;
         case "clientSelfPropertyUpdated":
           this.messageHandler.handleClientSelfPropertyUpdatedMessage(data);
+          break;
+        case "channels":
+          this.messageHandler.handleChannelsMessage(data);
           break;
         default:
           console.log(`No handler for event type: ${data.type}`);
@@ -244,6 +254,10 @@ class TS5DataHandler {
   }
 
   // Helper functions
+  getConnectionById(id: number): IConnection | undefined {
+    return this.localConnections.find((connection: IConnection) => connection.id === id);
+  }
+
   getChannelById(id: number, connectionId: number): IChannel | undefined {
     return this.localChannels.find((channel: IChannel) => channel.id === id && channel.connection?.id === connectionId);
   }
@@ -269,6 +283,19 @@ class TS5MessageHandler {
     this.setActiveConnectionId = setActiveConnectionId;
   }
 
+  parseChannelInfos(channelInfos: IChannelInfos, connection: IConnection) {
+    channelInfos.rootChannels.forEach((channel: IChannel) => {
+      this.dataHandler.addChannel({ ...channel, connection: connection });
+
+      if (channelInfos) {
+        if (channelInfos.subChannels !== null && channel.id in channelInfos.subChannels) {
+          channelInfos.subChannels[channel.id].forEach((subChannel: IChannel) => {
+            this.dataHandler.addChannel({ ...subChannel, connection: connection });
+          });
+        }
+      }
+    });
+  }
 
   // This message is sent by the TS5 server when the client is connected
   // It contains the initial data
@@ -282,18 +309,12 @@ class TS5MessageHandler {
       this.dataHandler.addConnection(connection);
 
       // Add channels
-      connection.channelInfos.rootChannels.forEach((channel: IChannel) => {
-        this.dataHandler.addChannel({ ...channel, connection: connection });
-
-        if (connection.channelInfos.subChannels !== null && channel.id in connection.channelInfos.subChannels) {
-          connection.channelInfos.subChannels[channel.id].forEach((subChannel: IChannel) => {
-            this.dataHandler.addChannel({ ...subChannel, connection: connection });
-          });
-        }
-      });
+      if (connection.channelInfos !== undefined) {
+        this.parseChannelInfos(connection.channelInfos, connection);
+      }
 
       // Add clients
-      connection.clientInfos.forEach((clientInfo: IClientInfo) => {
+      connection.clientInfos?.forEach((clientInfo: IClientInfo) => {
         const clientChannel: IChannel | undefined = this.dataHandler.getChannelById(clientInfo.channelId, connection.id);
 
         if (clientChannel !== undefined) {
@@ -314,36 +335,58 @@ class TS5MessageHandler {
 
     const client: IClient | undefined = this.dataHandler.getClientById(data.payload.clientId, data.payload.connectionId);
 
-    const newChannel: IChannel | undefined = this.dataHandler.getChannelById(data.payload.newChannelId, data.payload.connectionId);
-    if (newChannel === undefined) return;
 
-    if (client !== undefined) { // Client already exists
+    //* This gets called when we are connecting to the server and the new clients get loaded
+    if (+data.payload.oldChannelId == 0) { // Create new client(when connecting to server)
+      //set timout to wait for channels to be created
+      setTimeout(() => {
+        console.log("---> New Client created")
+        const newChannel = this.dataHandler.getChannelById(data.payload.newChannelId, data.payload.connectionId);
+        if (newChannel !== undefined) {
+          this.dataHandler.addClient(
+            {
+              id: data.payload.clientId,
+              talkStatus: 0,
+              channel: newChannel,
+              properties: data.payload.properties,
+            });
+        }
+      }, 2000);
+    } else {//* This gets called when a client moves a channel OR joins/leaves the server
+      const newChannel: IChannel | undefined = this.dataHandler.getChannelById(data.payload.newChannelId, data.payload.connectionId);
 
-      if (+data.payload.newChannelId == 0) { // Client left
+      if (newChannel === undefined || newChannel.id === 0) {
         console.log("---> Client left")
-        this.dataHandler.removeClient(client);
+
+        if (client !== undefined) {
+          this.dataHandler.removeClient(client);
+
+        }
         return;
       }
 
-      // Client moved
-      console.log("---> Client moved")
+      if (client !== undefined) { // Client already exists
 
-      this.dataHandler.updateClient({
-        ...client,
-        channel: newChannel,
-      });
+        // Client moved
+        console.log("---> Client moved")
 
-    } else { // Client does not exist
-      // Client joined
-      console.log("---> New Client joined")
-      this.dataHandler.addClient(
-        {
-          id: data.payload.clientId,
-          talkStatus: 0,
+        this.dataHandler.updateClient({
+          ...client,
           channel: newChannel,
-          properties: data.payload.properties,
-        }
-      );
+        });
+
+      } else { // Client does not exist
+        // Client joined
+        console.log("---> New Client joined")
+        this.dataHandler.addClient(
+          {
+            id: data.payload.clientId,
+            talkStatus: 0,
+            channel: newChannel,
+            properties: data.payload.properties,
+          }
+        );
+      }
     }
   }
 
@@ -372,10 +415,66 @@ class TS5MessageHandler {
       });
     }
 
+    console.log(this.dataHandler.localConnections)
+    console.log(this.dataHandler.localChannels)
+    console.log(this.dataHandler.localClients)
 
   }
   handleClientSelfPropertyUpdatedMessage(data: IClientSelfPropertyUpdatedMessage) {
     console.log("handleClientSelfPropertyUpdated", data);
     this.setActiveConnectionId(data.payload.connectionId);
+  }
+
+  handleServerPropertiesUpdatedMessage(data: IServerPropertiesUpdatedMessage) {
+    console.log("handleServerPropertiesUpdated", data);
+
+    const connection: IConnection | undefined = this.dataHandler.getConnectionById(data.payload.connectionId);
+
+    if (connection !== undefined) { // Update existing connection
+      this.dataHandler.updateConnection({
+        ...connection,
+        properties: data.payload.properties,
+      });
+    }
+  }
+
+  handleConnectStatusChangedMessage(data: IConnectStatusChangedMessage) {
+    console.log("handleConnectStatusChanged", data);
+
+    if (data.payload.status === 0) { // Disconnected from server
+      const connection: IConnection | undefined = this.dataHandler.getConnectionById(data.payload.connectionId);
+
+      if (connection !== undefined) {
+        this.dataHandler.removeConnection(connection);
+      }
+    }
+
+    // Status 1-3 are the connection steps (connecting, authenticating, etc.) (i guess)
+
+    if (data.payload.status === 4) { // Connected to server
+      this.dataHandler.addConnection({
+        id: data.payload.connectionId,
+        clientId: data.payload.info.clientId,
+      });
+    }
+  }
+
+  handleChannelsMessage(data: IChannelsMessage) {
+    console.log("handleChannels", data);
+
+    // Wait a bit for the connection to be added
+    setTimeout(() => {
+      console.log(this.dataHandler.localConnections);
+      console.log(data.payload.connectionId)
+      console.log(this.dataHandler.localConnections.filter((connection: IConnection) => connection.id === data.payload.connectionId)[0]);
+      console.log(this.dataHandler.localConnections.find((connection: IConnection) => connection.id === data.payload.connectionId));
+      const connection: IConnection | undefined = this.dataHandler.getConnectionById(data.payload.connectionId);
+      console.log(connection);
+      if (connection !== undefined) {
+        this.parseChannelInfos(data.payload.info, connection);
+        console.log(data.payload.info)
+      }
+    }, 1000);
+
   }
 }
