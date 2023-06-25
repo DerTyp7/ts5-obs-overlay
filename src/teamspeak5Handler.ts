@@ -434,7 +434,10 @@ class TS5MessageHandler {
   }
   handleClientSelfPropertyUpdatedMessage(data: IClientSelfPropertyUpdatedMessage) {
     console.log("handleClientSelfPropertyUpdated", data);
-    this.setActiveConnectionId(data.payload.connectionId);
+
+    if (data.payload.flag == "inputHardware") { // sadly thats the only way to detect if a server is active or not
+      this.setActiveConnectionId(data.payload.connectionId);
+    }
   }
 
   handleServerPropertiesUpdatedMessage(data: IServerPropertiesUpdatedMessage) {
