@@ -220,6 +220,13 @@ class TS5DataHandler {
 
     if (existingConnection !== undefined) {
       this.localConnections.splice(this.localConnections.indexOf(existingConnection), 1);
+
+      // Remove all channels and clients associated with the connection
+      this.localChannels = this.localChannels.filter((localChannel: IChannel) => localChannel.connection.id !== connection.id);
+      this.localClients = this.localClients.filter((localClient: IClient) => localClient.channel?.connection.id !== connection.id);
+
+      this.updateChannelsState();
+      this.updateClientsState();
       this.updateConnectionsState();
       console.log("Connection removed")
     } else {
@@ -233,6 +240,11 @@ class TS5DataHandler {
 
     if (existingChannel !== undefined) {
       this.localChannels.splice(this.localChannels.indexOf(existingChannel), 1);
+
+      // Remove all clients associated with the channel
+      this.localClients = this.localClients.filter((localClient: IClient) => localClient.channel?.id !== channel.id);
+
+      this.updateClientsState();
       this.updateChannelsState();
       console.log("Channel removed")
     } else {
