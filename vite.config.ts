@@ -10,6 +10,8 @@ export default defineConfig({
       "@components": "/src/components",
       "@styles": "/src/styles",
       "@assets": "/src/assets",
+      "@interfaces": "/src/interfaces",
+      "@utils": "/src/utils",
     },
   },
   plugins: [react()],
