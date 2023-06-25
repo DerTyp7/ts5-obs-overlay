@@ -15,14 +15,15 @@ export class TS5Connection {
     // State setters for dataHandler
     setConnections: React.Dispatch<React.SetStateAction<IConnection[]>>,
     setChannels: React.Dispatch<React.SetStateAction<IChannel[]>>,
-    setClients: React.Dispatch<React.SetStateAction<IClient[]>>
+    setClients: React.Dispatch<React.SetStateAction<IClient[]>>,
+    setActiveConnectionId: React.Dispatch<React.SetStateAction<number>>,
   ) {
     // Create websocket connection to TS5 client
     this.ws = new WebSocket(`ws://localhost:${remoteAppPort}`);
 
     // Create dataHandler and messageHandler
     this.dataHandler = new TS5DataHandler(setConnections, setChannels, setClients);
-    this.messageHandler = new TS5MessageHandler(this.ws, this.dataHandler);
+    this.messageHandler = new TS5MessageHandler(this.ws, this.dataHandler, setActiveConnectionId);
   }
 
 
@@ -54,7 +55,6 @@ export class TS5Connection {
     // See TS5MessageHandler class
     this.ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
-
       switch (data.type) {
         case "auth":
           this.messageHandler.handleAuthMessage(data);
@@ -261,9 +261,12 @@ class TS5MessageHandler {
   ws: WebSocket;
   dataHandler: TS5DataHandler;
 
-  constructor(ws: WebSocket, dataHandler: TS5DataHandler) {
+  setActiveConnectionId: React.Dispatch<React.SetStateAction<number>>;
+
+  constructor(ws: WebSocket, dataHandler: TS5DataHandler, setActiveConnectionId: React.Dispatch<React.SetStateAction<number>>) {
     this.ws = ws;
     this.dataHandler = dataHandler;
+    this.setActiveConnectionId = setActiveConnectionId;
   }
 
 
@@ -284,7 +287,7 @@ class TS5MessageHandler {
 
         if (connection.channelInfos.subChannels !== null && channel.id in connection.channelInfos.subChannels) {
           connection.channelInfos.subChannels[channel.id].forEach((subChannel: IChannel) => {
-            this.dataHandler.addChannel(subChannel);
+            this.dataHandler.addChannel({ ...subChannel, connection: connection });
           });
         }
       });
@@ -296,6 +299,7 @@ class TS5MessageHandler {
         if (clientChannel !== undefined) {
           this.dataHandler.addClient({
             id: clientInfo.id,
+            talkStatus: 0,
             channel: { ...clientChannel, connection: connection },
             properties: clientInfo.properties,
           });
@@ -335,6 +339,7 @@ class TS5MessageHandler {
       this.dataHandler.addClient(
         {
           id: data.payload.clientId,
+          talkStatus: 0,
           channel: newChannel,
           properties: data.payload.properties,
         }
@@ -343,16 +348,34 @@ class TS5MessageHandler {
   }
 
   handleClientPropertiesUpdatedMessage(data: IClientPropertiesUpdatedMessage) {
-    // console.log("handleClientPropertiesUpdate", data);
+    console.log("handleClientPropertiesUpdate", data);
+
+    const client: IClient | undefined = this.dataHandler.getClientById(data.payload.clientId, data.payload.connectionId);
+
+    if (client !== undefined) {
+      this.dataHandler.updateClient({
+        ...client,
+        properties: data.payload.properties,
+      });
+    }
   }
+
   handleTalkStatusChangedMessage(data: ITalkStatusChangedMessage) {
-    //console.log("handleTalkStatusChanged", data);
-    console.log(this.dataHandler.localConnections);
-    console.log(this.dataHandler.localChannels);
-    console.log(this.dataHandler.localClients);
+    console.log("handleTalkStatusChanged", data);
+
+    const client: IClient | undefined = this.dataHandler.getClientById(data.payload.clientId, data.payload.connectionId);
+
+    if (client !== undefined) {
+      this.dataHandler.updateClient({
+        ...client,
+        talkStatus: data.payload.status,
+      });
+    }
+
 
   }
   handleClientSelfPropertyUpdatedMessage(data: IClientSelfPropertyUpdatedMessage) {
-    //  console.log("handleClientSelfPropertyUpdated", data);
+    console.log("handleClientSelfPropertyUpdated", data);
+    this.setActiveConnectionId(data.payload.connectionId);
   }
 }

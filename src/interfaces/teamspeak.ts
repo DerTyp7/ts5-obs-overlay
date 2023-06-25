@@ -22,6 +22,7 @@ export interface IAuthSenderPayload {
 
 export interface IClient {
   id: number;
+  talkStatus: number;
   channel: IChannel;
   properties: IClientProperties;
 }
