@@ -4,13 +4,15 @@ import "@styles/Viewer.scss";
 export default function Viewer({
   clients,
   channel,
+  showChannelName = false,
 }: {
   clients: IClient[] | undefined;
   channel: IChannel | undefined;
+  showChannelName?: boolean;
 }) {
   return (
     <div className="viewer">
-      <h3>{channel?.properties.name}</h3>
+      {showChannelName ? <h3>{channel?.properties.name}</h3> : null}
       {clients?.map((client) => {
         if (client) {
           return (

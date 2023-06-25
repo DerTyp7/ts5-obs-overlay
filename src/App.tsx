@@ -51,6 +51,7 @@ export default function App() {
   return (
     <div className="App">
       <Viewer
+        showChannelName={true}
         clients={
           clients.map((client) => {
             if (client.channel?.id === currentChannel?.id) {
