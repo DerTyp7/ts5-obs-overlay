@@ -18,7 +18,7 @@ export class TS5Connection {
     setConnections: React.Dispatch<React.SetStateAction<IConnection[]>>,
     setChannels: React.Dispatch<React.SetStateAction<IChannel[]>>,
     setClients: React.Dispatch<React.SetStateAction<IClient[]>>,
-    setActiveConnectionId: React.Dispatch<React.SetStateAction<number>>,
+    setActiveConnectionStateId: React.Dispatch<React.SetStateAction<number>>,
   ) {
     // Create websocket connection to TS5 client
     this.remoteAppPort = remoteAppPort;
@@ -26,7 +26,7 @@ export class TS5Connection {
 
     // Create dataHandler and messageHandler
     this.dataHandler = new TS5DataHandler(setConnections, setChannels, setClients);
-    this.messageHandler = new TS5MessageHandler(this.ws, this.dataHandler, setActiveConnectionId);
+    this.messageHandler = new TS5MessageHandler(this.ws, this.dataHandler, setActiveConnectionStateId);
   }
 
   reconnect() {
@@ -328,12 +328,18 @@ class TS5MessageHandler {
   ws: WebSocket;
   dataHandler: TS5DataHandler;
 
-  setActiveConnectionId: React.Dispatch<React.SetStateAction<number>>;
+  setActiveConnectionStateId: React.Dispatch<React.SetStateAction<number>>;
+  activeConnectionId = 0;
 
-  constructor(ws: WebSocket, dataHandler: TS5DataHandler, setActiveConnectionId: React.Dispatch<React.SetStateAction<number>>) {
+  constructor(ws: WebSocket, dataHandler: TS5DataHandler, setActiveConnectionStateId: React.Dispatch<React.SetStateAction<number>>) {
     this.ws = ws;
     this.dataHandler = dataHandler;
-    this.setActiveConnectionId = setActiveConnectionId;
+    this.setActiveConnectionStateId = setActiveConnectionStateId;
+  }
+
+  setActiveConnection(connectionId: number) {
+    this.activeConnectionId = connectionId;
+    this.setActiveConnectionStateId(connectionId);
   }
 
   parseChannelInfos(channelInfos: IChannelInfos, connection: IConnection) {
@@ -476,8 +482,10 @@ class TS5MessageHandler {
   handleClientSelfPropertyUpdatedMessage(data: IClientSelfPropertyUpdatedMessage) {
     console.log("handleClientSelfPropertyUpdated", data);
 
-    if (data.payload.flag == "inputHardware") { // sadly thats the only way to detect if a server is active or not
-      this.setActiveConnectionId(data.payload.connectionId);
+    const connection: IConnection | undefined = this.dataHandler.getConnectionById(this.activeConnectionId);
+
+    if (data.payload.flag == "inputHardware" || connection == undefined) { // sadly thats the only way to detect if a server is active or not
+      this.setActiveConnection(data.payload.connectionId);
     }
   }
 
