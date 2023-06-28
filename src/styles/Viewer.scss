@@ -1,0 +1,39 @@
+.viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 0 0;
+  padding: 1rem;
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .client {
+    display: flex;
+    flex-direction: row;
+    gap: 0 0;
+    align-items: center;
+    margin: 0.5rem 0;
+
+    svg {
+      width: 2.8rem;
+      height: 2.8rem;
+      margin-right: 0.5rem;
+    }
+    p {
+      margin: 0;
+      color: white;
+      background-color: rgba(47, 49, 54, 0.5);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+
+      // ellipsis after 22 characters
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 20ch;
+    }
+  }
+}
