@@ -72,7 +72,7 @@ export default function Viewer({
             </div>
           );
         } else {
-          return <></>;
+          return <div key={Math.random()}></div>;
         }
       })}
     </div>
