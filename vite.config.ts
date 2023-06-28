@@ -13,6 +13,7 @@ export default defineConfig({
       "@assets": "/src/assets",
       "@interfaces": "/src/interfaces",
       "@utils": "/src/utils",
+      "@handlers": "/src/handlers",
     },
   },
   plugins: [react(), viteSingleFile({ useRecommendedBuildConfig: false })],

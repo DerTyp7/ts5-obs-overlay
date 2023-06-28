@@ -14,7 +14,8 @@
       "@assets/*": ["/src/assets/*"],
       "@styles/*": ["/src/styles/*"],
       "@utils/*": ["/src/utils/*"],
-      "@interfaces/*": ["/src/interfaces/*"]
+      "@interfaces/*": ["/src/interfaces/*"],
+      "@handlers/*": ["/src/handlers/*"]
     },
 
     /* Bundler mode */
@@ -31,6 +32,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "tests/teamspeakHandler.test.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

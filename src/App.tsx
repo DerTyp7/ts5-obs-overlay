@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "@styles/App.scss";
-import { TS5Connection } from "./teamspeak5Handler";
 import { IChannel, IClient, IConnection } from "interfaces/teamspeak";
 import { useEffect, useState } from "react";
 import Viewer from "./Viewer";
 import { useSearchParams } from "react-router-dom";
+import { TS5Connection } from "handlers/teamspeak/connectionHandler";
 
 export default function App() {
   const [searchParams] = useSearchParams();
