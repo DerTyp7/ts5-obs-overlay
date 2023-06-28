@@ -1,11 +1,11 @@
-import { IAuthSenderPayload, IChannel, IClient, IConnection } from "interfaces/teamspeak";
+import { IAuthSenderPayload, IChannel, IClient, IConnection, ITS5Connection } from "interfaces/teamspeak";
 import { TS5DataHandler } from "./dataHandler";
 import { TS5MessageHandler } from "./messageHandler";
 
 
 // Establish connection to TS5 client
 // Main class
-export class TS5Connection {
+export class TS5Connection implements ITS5Connection {
   ws: WebSocket; // Websocket connection to TS5 client
   authenticated = false; // Is the connection authenticated?
   remoteAppPort: number; // Port of TS5 client

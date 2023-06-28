@@ -1,8 +1,8 @@
-import { IChannelInfos, IConnection, IChannel, IAuthMessage, IClientInfo, IClientMovedMessage, IClient, IClientPropertiesUpdatedMessage, ITalkStatusChangedMessage, IClientSelfPropertyUpdatedMessage, IServerPropertiesUpdatedMessage, IConnectStatusChangedMessage, IChannelsMessage } from "interfaces/teamspeak";
+import { IChannelInfos, IConnection, IChannel, IAuthMessage, IClientInfo, IClientMovedMessage, IClient, IClientPropertiesUpdatedMessage, ITalkStatusChangedMessage, IClientSelfPropertyUpdatedMessage, IServerPropertiesUpdatedMessage, IConnectStatusChangedMessage, IChannelsMessage, ITS5MessageHandler } from "interfaces/teamspeak";
 import { TS5DataHandler } from "./dataHandler";
 
 // Handle incoming messages from TS5 client
-export class TS5MessageHandler {
+export class TS5MessageHandler implements ITS5MessageHandler {
   ws: WebSocket;
   dataHandler: TS5DataHandler;
 

@@ -1,11 +1,11 @@
-import { IConnection, IChannel, IClient } from "interfaces/teamspeak";
+import { IConnection, IChannel, IClient, ITS5DataHandler } from "interfaces/teamspeak";
 
 
 /**
  * Handles data received from TS5 client (list of connections, channels and clients)
  * Updates the states of App.tsx
  */
-export class TS5DataHandler {
+export class TS5DataHandler implements ITS5DataHandler {
   // Local lists of connections, channels and clients
   // These lists are used to keep track of the data, independent of the App.tsx state
   localConnections: IConnection[];
