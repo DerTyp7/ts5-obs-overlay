@@ -1,12 +1,3 @@
-
-export interface TS5MessageHandlerOptions {
-  handleAuthMessage?: (data: IAuthMessage) => void;
-  handleClientMoved?: (data: IClientMovedMessage) => void;
-  handleClientPropertiesUpdate?: (data: IClientPropertiesUpdatedMessage) => void;
-  handleTalkStatusChanged?: (data: ITalkStatusChangedMessage) => void;
-  handleClientSelfPropertyUpdated?: (data: IClientSelfPropertyUpdatedMessage) => void;
-}
-
 export interface IAuthSenderPayload {
   type: "auth";
   payload: {
