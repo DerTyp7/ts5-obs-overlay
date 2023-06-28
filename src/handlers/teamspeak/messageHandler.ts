@@ -1,15 +1,14 @@
-import { IChannelInfos, IConnection, IChannel, IAuthMessage, IClientInfo, IClientMovedMessage, IClient, IClientPropertiesUpdatedMessage, ITalkStatusChangedMessage, IClientSelfPropertyUpdatedMessage, IServerPropertiesUpdatedMessage, IConnectStatusChangedMessage, IChannelsMessage, ITS5MessageHandler } from "interfaces/teamspeak";
-import { TS5DataHandler } from "./dataHandler";
+import { IChannelInfos, IConnection, IChannel, IAuthMessage, IClientInfo, IClientMovedMessage, IClient, IClientPropertiesUpdatedMessage, ITalkStatusChangedMessage, IClientSelfPropertyUpdatedMessage, IServerPropertiesUpdatedMessage, IConnectStatusChangedMessage, IChannelsMessage, ITS5MessageHandler, ITS5DataHandler } from "interfaces/teamspeak";
 
 // Handle incoming messages from TS5 client
 export class TS5MessageHandler implements ITS5MessageHandler {
   ws: WebSocket;
-  dataHandler: TS5DataHandler;
+  dataHandler: ITS5DataHandler;
 
   setActiveConnectionStateId: React.Dispatch<React.SetStateAction<number>>;
   activeConnectionId = 0;
 
-  constructor(ws: WebSocket, dataHandler: TS5DataHandler, setActiveConnectionStateId: React.Dispatch<React.SetStateAction<number>>) {
+  constructor(ws: WebSocket, dataHandler: ITS5DataHandler, setActiveConnectionStateId: React.Dispatch<React.SetStateAction<number>>) {
     this.ws = ws;
     this.dataHandler = dataHandler;
     this.setActiveConnectionStateId = setActiveConnectionStateId;

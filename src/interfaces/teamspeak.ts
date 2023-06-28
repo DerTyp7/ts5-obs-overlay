@@ -1,5 +1,5 @@
 // Classes
-export interface ITS5Connection {
+export interface ITS5ConnectionHandler {
   ws: WebSocket;
   authenticated: boolean;
   remoteAppPort: number;

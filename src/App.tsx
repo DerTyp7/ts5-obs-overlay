@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "@styles/App.scss";
-import { IChannel, IClient, IConnection } from "interfaces/teamspeak";
+import { IChannel, IClient, IConnection, ITS5ConnectionHandler } from "interfaces/teamspeak";
 import { useEffect, useState } from "react";
 import Viewer from "./Viewer";
 import { useSearchParams } from "react-router-dom";
-import { TS5Connection } from "handlers/teamspeak/connectionHandler";
+import { TS5ConnectionHandler } from "handlers/teamspeak/connectionHandler";
 
 export default function App() {
   const [searchParams] = useSearchParams();
@@ -38,7 +38,7 @@ export default function App() {
   useEffect(() => {
     const remoteAppPort = searchParams.get("remoteAppPort");
 
-    const tsConnection: TS5Connection = new TS5Connection(
+    const tsConnection: ITS5ConnectionHandler = new TS5ConnectionHandler(
       parseInt(remoteAppPort ?? "5899"),
       setConnections,
       setChannels,
