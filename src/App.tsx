@@ -4,8 +4,11 @@ import { TS5Connection } from "./teamspeak5Handler";
 import { IChannel, IClient, IConnection } from "interfaces/teamspeak";
 import { useEffect, useState } from "react";
 import Viewer from "./Viewer";
+import { useSearchParams } from "react-router-dom";
 
 export default function App() {
+  const [searchParams] = useSearchParams();
+
   const [clients, setClients] = useState<IClient[]>([]);
   const [channels, setChannels] = useState<IChannel[]>([]);
   const [connections, setConnections] = useState<IConnection[]>([]);
@@ -33,8 +36,10 @@ export default function App() {
   }
 
   useEffect(() => {
+    const remoteAppPort = searchParams.get("remoteAppPort");
+
     const tsConnection: TS5Connection = new TS5Connection(
-      5899,
+      parseInt(remoteAppPort ?? "5899"),
       setConnections,
       setChannels,
       setClients,
