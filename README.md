@@ -33,8 +33,9 @@ This App uses the new "Remote Apps" feature of Teamspeak 5.
 You can customize the overlay by adding parameters to the URL of the Browser Source.
 
 1. Open your Browser Source settings
-2. **Untick** the checkbox "Local File"
-3. Add `file://` to the beginning of the URL
+2. **Untick** the checkbox "Local File"  
+3. Add `file://` to the beginning of the URL  
+   ![image](https://github.com/DerTyp876/ts5-obs-overlay/assets/76851529/87985b4c-4397-4681-9635-239d1e382c24)
 4. Start adding parameters like discribed below
 
 Start by adding a `?` to the end of the URL and then add the parameters.
