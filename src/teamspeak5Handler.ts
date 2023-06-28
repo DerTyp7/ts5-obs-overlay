@@ -30,6 +30,7 @@ export class TS5Connection {
   }
 
   reconnect() {
+    console.log("Reconnecting...")
     this.ws.close();
 
     this.ws = new WebSocket(`ws://localhost:${this.remoteAppPort}`);
@@ -74,7 +75,9 @@ export class TS5Connection {
         localStorage.removeItem("apiKey");
       }
 
-      this.reconnect();
+      setTimeout(() => {
+        this.reconnect();
+      }, 2000);
     };
 
     // Handle messages received from TS5 client
