@@ -5,6 +5,8 @@ import { IAuthMessage, IAuthSenderPayload, IChannel, IChannelInfos, IChannelsMes
 // Main class
 export class TS5Connection {
   ws: WebSocket; // Websocket connection to TS5 client
+  authenticated = false; // Is the connection authenticated?
+  remoteAppPort: number; // Port of TS5 client
   dataHandler: TS5DataHandler; // Handles data/lists and states
   messageHandler: TS5MessageHandler; // Handles messages received from TS5 client
 
@@ -19,17 +21,28 @@ export class TS5Connection {
     setActiveConnectionId: React.Dispatch<React.SetStateAction<number>>,
   ) {
     // Create websocket connection to TS5 client
-    this.ws = new WebSocket(`ws://localhost:${remoteAppPort}`);
+    this.remoteAppPort = remoteAppPort;
+    this.ws = new WebSocket(`ws://localhost:${this.remoteAppPort}`);
 
     // Create dataHandler and messageHandler
     this.dataHandler = new TS5DataHandler(setConnections, setChannels, setClients);
     this.messageHandler = new TS5MessageHandler(this.ws, this.dataHandler, setActiveConnectionId);
   }
 
+  reconnect() {
+    this.ws.close();
+
+    this.ws = new WebSocket(`ws://localhost:${this.remoteAppPort}`);
+
+    this.dataHandler.clearAll();
+    this.authenticated = false;
+    this.connect();
+  }
 
   // Connect to TS5 client
   connect() {
     console.log('Connecting to TS5 client...');
+    console.log(localStorage.getItem("apiKey"))
 
     // Create authentication payload
     const initalPayload: IAuthSenderPayload = {
@@ -53,6 +66,15 @@ export class TS5Connection {
 
     this.ws.onclose = (event) => {
       console.log("WebSocket connection closed", event);
+
+      // If the connection was closed before authentication, remove the API key from local storage
+      // OBS weirdly caches the localstorage and is very stubborn about clearing it (even when clicken "Clear Cache")
+      if (!this.authenticated) {
+        console.log("WebSocket connection closed before authentication");
+        localStorage.removeItem("apiKey");
+      }
+
+      this.reconnect();
     };
 
     // Handle messages received from TS5 client
@@ -65,6 +87,7 @@ export class TS5Connection {
       switch (data.type) {
         case "auth":
           this.messageHandler.handleAuthMessage(data);
+          this.authenticated = true;
           break;
         case "clientMoved":
           this.messageHandler.handleClientMovedMessage(data);
@@ -134,6 +157,17 @@ class TS5DataHandler {
 
   private updateClientsState() {
     this.setClients([...this.localClients]);
+  }
+
+  // Clear all data
+  clearAll() {
+    this.localConnections = [];
+    this.localChannels = [];
+    this.localClients = [];
+
+    this.updateConnectionsState();
+    this.updateChannelsState();
+    this.updateClientsState();
   }
 
   // Add data to local lists and update states
