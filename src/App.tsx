@@ -57,7 +57,7 @@ export default function App() {
       <Viewer
         clients={
           clients.map((client) => {
-            if (client.channel?.id === currentChannel?.id) {
+            if (client.channel?.id === currentChannel?.id && client.channel.connection.id === activeConnectionId) {
               return client;
             }
           }) as IClient[]
