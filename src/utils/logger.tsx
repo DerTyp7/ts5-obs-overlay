@@ -1,7 +1,7 @@
 export default class Logger {
   // Log message to the console
   public static log(message: string, data: object | null = null): void {
-    console.log(`%c${message}`.trim(), "color: gray", data ?? "");
+    console.log(`[Log] %c${message}`.trim(), "color: gray", data ?? "");
   }
 
   // Log warning to the console
