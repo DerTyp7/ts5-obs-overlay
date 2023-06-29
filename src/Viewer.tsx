@@ -1,4 +1,4 @@
-import { IChannel, IClient } from "interfaces/teamspeak";
+import { IChannel, IClient } from "@interfaces/teamspeak";
 import "@styles/Viewer.scss";
 
 export default function Viewer({

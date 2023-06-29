@@ -6,15 +6,15 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-    "baseUrl": "./src",
-
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["/src/*"],
-      "@components/*": ["/src/components/*"],
-      "@assets/*": ["/src/assets/*"],
-      "@styles/*": ["/src/styles/*"],
-      "@utils/*": ["/src/utils/*"],
-      "@interfaces/*": ["/src/interfaces/*"]
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@styles/*": ["src/styles/*"],
+      "@utils/*": ["src/utils/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@handlers/*": ["src/handlers/*"]
     },
 
     /* Bundler mode */

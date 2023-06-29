@@ -1,12 +1,54 @@
-
-export interface TS5MessageHandlerOptions {
-  handleAuthMessage?: (data: IAuthMessage) => void;
-  handleClientMoved?: (data: IClientMovedMessage) => void;
-  handleClientPropertiesUpdate?: (data: IClientPropertiesUpdatedMessage) => void;
-  handleTalkStatusChanged?: (data: ITalkStatusChangedMessage) => void;
-  handleClientSelfPropertyUpdated?: (data: IClientSelfPropertyUpdatedMessage) => void;
+// Classes
+export interface ITS5ConnectionHandler {
+  ws: WebSocket;
+  authenticated: boolean;
+  remoteAppPort: number;
+  dataHandler: ITS5DataHandler;
+  messageHandler: ITS5MessageHandler;
+  reconnect(): void;
+  connect(): void;
 }
 
+export interface ITS5DataHandler {
+  localConnections: IConnection[];
+  localChannels: IChannel[];
+  localClients: IClient[];
+  setConnections: React.Dispatch<React.SetStateAction<IConnection[]>>;
+  setChannels: React.Dispatch<React.SetStateAction<IChannel[]>>;
+  setClients: React.Dispatch<React.SetStateAction<IClient[]>>;
+  clearAll(): void;
+  addConnection(connection: IConnection): void;
+  addChannel(channel: IChannel): void;
+  addClient(client: IClient): void;
+  updateConnection(connection: IConnection): void;
+  updateChannel(channel: IChannel): void;
+  updateClient(client: IClient): void;
+  removeConnection(connection: IConnection): void;
+  removeChannel(channel: IChannel): void;
+  removeClient(client: IClient): void;
+  getConnectionById(id: number): IConnection | undefined;
+  getChannelById(id: number, connectionId: number): IChannel | undefined;
+  getClientById(id: number, connectionId: number): IClient | undefined;
+}
+
+export interface ITS5MessageHandler {
+  ws: WebSocket;
+  dataHandler: ITS5DataHandler;
+  setActiveConnectionStateId: React.Dispatch<React.SetStateAction<number>>;
+  activeConnectionId: number;
+  setActiveConnection(connectionId: number): void;
+  parseChannelInfos(channelInfos: IChannelInfos, connection: IConnection): void;
+  handleAuthMessage(data: IAuthMessage): void;
+  handleClientMovedMessage(data: IClientMovedMessage): void;
+  handleClientPropertiesUpdatedMessage(data: IClientPropertiesUpdatedMessage): void;
+  handleTalkStatusChangedMessage(data: ITalkStatusChangedMessage): void;
+  handleClientSelfPropertyUpdatedMessage(data: IClientSelfPropertyUpdatedMessage): void;
+  handleServerPropertiesUpdatedMessage(data: IServerPropertiesUpdatedMessage): void;
+  handleConnectStatusChangedMessage(data: IConnectStatusChangedMessage): void;
+  handleChannelsMessage(data: IChannelsMessage): void;
+}
+
+// Remote App
 export interface IAuthSenderPayload {
   type: "auth";
   payload: {
