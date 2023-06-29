@@ -15,7 +15,7 @@ export default class Logger {
   }
 
   // Log message received from the websocket to the console
-  public static wsReicved(data: object, message: string | undefined = undefined): void {
+  public static wsReceived(data: object, message: string | undefined = undefined): void {
     console.log(`%c[WS Recieved] ${message ?? ""}`.trim(), "color: #8258c7", data);
   }
 
