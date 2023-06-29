@@ -89,7 +89,7 @@ export class TS5ConnectionHandler implements ITS5ConnectionHandler {
     this.ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
 
-      Logger.wsRecieved(data)
+      Logger.wsReceived(data)
 
       switch (data.type) {
         case "auth":
@@ -107,7 +107,6 @@ export class TS5ConnectionHandler implements ITS5ConnectionHandler {
           break;
         case "serverPropertiesUpdated":
           this.messageHandler.handleServerPropertiesUpdatedMessage(data);
-          //this.ws.close();
           break;
         case "connectStatusChanged":
           this.messageHandler.handleConnectStatusChangedMessage(data);
@@ -119,7 +118,7 @@ export class TS5ConnectionHandler implements ITS5ConnectionHandler {
           this.messageHandler.handleChannelsMessage(data);
           break;
         default:
-          console.log(`No handler for event type: ${data.type}`);
+          Logger.log(`No handler for event type: ${data.type}`);
           break;
       }
     };
