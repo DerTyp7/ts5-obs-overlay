@@ -1,6 +1,7 @@
 import { IAuthSenderPayload, IChannel, IClient, IConnection, ITS5ConnectionHandler, ITS5DataHandler, ITS5MessageHandler } from "@interfaces/teamspeak";
 import { TS5DataHandler } from "./dataHandler";
 import { TS5MessageHandler } from "./messageHandler";
+import Logger from "@/utils/logger";
 
 
 // Establish connection to TS5 client
@@ -22,6 +23,8 @@ export class TS5ConnectionHandler implements ITS5ConnectionHandler {
     setClients: React.Dispatch<React.SetStateAction<IClient[]>>,
     setActiveConnectionStateId: React.Dispatch<React.SetStateAction<number>>,
   ) {
+
+
     // Create websocket connection to TS5 client
     this.remoteAppPort = remoteAppPort;
     this.ws = new WebSocket(`ws://localhost:${this.remoteAppPort}`);
@@ -32,7 +35,7 @@ export class TS5ConnectionHandler implements ITS5ConnectionHandler {
   }
 
   reconnect() {
-    console.log("Reconnecting...")
+    Logger.log("Reconnecting...")
     this.ws.close();
 
     this.ws = new WebSocket(`ws://localhost:${this.remoteAppPort}`);
@@ -44,8 +47,7 @@ export class TS5ConnectionHandler implements ITS5ConnectionHandler {
 
   // Connect to TS5 client
   connect() {
-    console.log('Connecting to TS5 client...');
-    console.log(localStorage.getItem("apiKey"))
+    Logger.log('Connecting to TS5 client...');
 
     // Create authentication payload
     const initalPayload: IAuthSenderPayload = {
@@ -63,17 +65,17 @@ export class TS5ConnectionHandler implements ITS5ConnectionHandler {
 
     this.ws.onopen = () => {
       // Send authentication payload to TS5 client
-      console.log("Sending auth payload...")
       this.ws.send(JSON.stringify(initalPayload));
+      Logger.wsSent(initalPayload);
     };
 
     this.ws.onclose = (event) => {
-      console.log("WebSocket connection closed", event);
+      Logger.log("WebSocket connection closed", event);
 
       // If the connection was closed before authentication, remove the API key from local storage
       // OBS weirdly caches the localstorage and is very stubborn about clearing it (even when clicken "Clear Cache")
       if (!this.authenticated) {
-        console.log("WebSocket connection closed before authentication");
+        Logger.log("WebSocket connection closed before authentication");
         localStorage.removeItem("apiKey");
       }
 
@@ -87,7 +89,7 @@ export class TS5ConnectionHandler implements ITS5ConnectionHandler {
     this.ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
 
-      console.log(data)
+      Logger.wsReceived(data)
 
       switch (data.type) {
         case "auth":
@@ -105,7 +107,6 @@ export class TS5ConnectionHandler implements ITS5ConnectionHandler {
           break;
         case "serverPropertiesUpdated":
           this.messageHandler.handleServerPropertiesUpdatedMessage(data);
-          //this.ws.close();
           break;
         case "connectStatusChanged":
           this.messageHandler.handleConnectStatusChangedMessage(data);
@@ -117,7 +118,7 @@ export class TS5ConnectionHandler implements ITS5ConnectionHandler {
           this.messageHandler.handleChannelsMessage(data);
           break;
         default:
-          console.log(`No handler for event type: ${data.type}`);
+          Logger.log(`No handler for event type: ${data.type}`);
           break;
       }
     };

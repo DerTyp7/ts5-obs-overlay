@@ -1,3 +1,4 @@
+import Logger from "@/utils/logger";
 import { IChannelInfos, IConnection, IChannel, IAuthMessage, IClientInfo, IClientMovedMessage, IClient, IClientPropertiesUpdatedMessage, ITalkStatusChangedMessage, IClientSelfPropertyUpdatedMessage, IServerPropertiesUpdatedMessage, IConnectStatusChangedMessage, IChannelsMessage, ITS5MessageHandler, ITS5DataHandler } from "@interfaces/teamspeak";
 
 // Handle incoming messages from TS5 client
@@ -36,8 +37,6 @@ export class TS5MessageHandler implements ITS5MessageHandler {
   // This message is sent by the TS5 server when the client is connected
   // It contains the initial data
   handleAuthMessage(data: IAuthMessage) {
-    console.log("handleAuthMessage", data);
-
     localStorage.setItem("apiKey", data.payload.apiKey);
 
     // Process auth payload and add initial data
@@ -67,8 +66,6 @@ export class TS5MessageHandler implements ITS5MessageHandler {
 
   // This message is sent by the TS5 server when a client moves a channel OR joins/leaves the server
   handleClientMovedMessage(data: IClientMovedMessage) {
-    console.log("handleClientMoved", data);
-
     const client: IClient | undefined = this.dataHandler.getClientById(data.payload.clientId, data.payload.connectionId);
 
 
@@ -76,7 +73,6 @@ export class TS5MessageHandler implements ITS5MessageHandler {
     if (+data.payload.oldChannelId == 0) { // Create new client(when connecting to server)
       //set timout to wait for channels to be created
       setTimeout(() => {
-        console.log("---> New Client created")
         const newChannel = this.dataHandler.getChannelById(data.payload.newChannelId, data.payload.connectionId);
         if (newChannel !== undefined) {
           this.dataHandler.addClient(
@@ -86,25 +82,23 @@ export class TS5MessageHandler implements ITS5MessageHandler {
               channel: newChannel,
               properties: data.payload.properties,
             });
+          Logger.ts(`New Client found (${data.payload.connectionId} - ${data.payload.clientId} - ${data.payload.properties.nickname})`)
         }
       }, 2000);
+
     } else {//* This gets called when a client moves a channel OR joins/leaves the server
       const newChannel: IChannel | undefined = this.dataHandler.getChannelById(data.payload.newChannelId, data.payload.connectionId);
 
       if (newChannel === undefined || newChannel.id === 0) {
-        console.log("---> Client left")
-
+        Logger.ts(`Client left (${data.payload.connectionId} - ${data.payload.clientId} - ${data.payload.properties.nickname})`)
         if (client !== undefined) {
           this.dataHandler.removeClient(client);
-
         }
         return;
       }
 
       if (client !== undefined) { // Client already exists
-
-        // Client moved
-        console.log("---> Client moved")
+        Logger.ts(`Client moved (${client.channel.connection.id} - ${client.id} - ${client.properties.nickname})`)
 
         this.dataHandler.updateClient({
           ...client,
@@ -113,7 +107,8 @@ export class TS5MessageHandler implements ITS5MessageHandler {
 
       } else { // Client does not exist
         // Client joined
-        console.log("---> New Client joined")
+        Logger.ts(`Client joined (${data.payload.connectionId} - ${data.payload.clientId} - ${data.payload.properties.nickname})`)
+
         this.dataHandler.addClient(
           {
             id: data.payload.clientId,
@@ -127,8 +122,6 @@ export class TS5MessageHandler implements ITS5MessageHandler {
   }
 
   handleClientPropertiesUpdatedMessage(data: IClientPropertiesUpdatedMessage) {
-    console.log("handleClientPropertiesUpdate", data);
-
     const client: IClient | undefined = this.dataHandler.getClientById(data.payload.clientId, data.payload.connectionId);
 
     if (client !== undefined) {
@@ -140,8 +133,6 @@ export class TS5MessageHandler implements ITS5MessageHandler {
   }
 
   handleTalkStatusChangedMessage(data: ITalkStatusChangedMessage) {
-    console.log("handleTalkStatusChanged", data);
-
     const client: IClient | undefined = this.dataHandler.getClientById(data.payload.clientId, data.payload.connectionId);
 
     if (client !== undefined) {
@@ -151,14 +142,12 @@ export class TS5MessageHandler implements ITS5MessageHandler {
       });
     }
 
-    console.log(this.dataHandler.localConnections)
-    console.log(this.dataHandler.localChannels)
-    console.log(this.dataHandler.localClients)
+    // console.log(this.dataHandler.localConnections)
+    // console.log(this.dataHandler.localChannels)
+    // console.log(this.dataHandler.localClients)
 
   }
   handleClientSelfPropertyUpdatedMessage(data: IClientSelfPropertyUpdatedMessage) {
-    console.log("handleClientSelfPropertyUpdated", data);
-
     const connection: IConnection | undefined = this.dataHandler.getConnectionById(this.activeConnectionId);
 
     if (data.payload.flag == "inputHardware" || connection == undefined) { // sadly thats the only way to detect if a server is active or not
@@ -167,8 +156,6 @@ export class TS5MessageHandler implements ITS5MessageHandler {
   }
 
   handleServerPropertiesUpdatedMessage(data: IServerPropertiesUpdatedMessage) {
-    console.log("handleServerPropertiesUpdated", data);
-
     const connection: IConnection | undefined = this.dataHandler.getConnectionById(data.payload.connectionId);
 
     if (connection !== undefined) { // Update existing connection
@@ -180,8 +167,6 @@ export class TS5MessageHandler implements ITS5MessageHandler {
   }
 
   handleConnectStatusChangedMessage(data: IConnectStatusChangedMessage) {
-    console.log("handleConnectStatusChanged", data);
-
     if (data.payload.status === 0) { // Disconnected from server
       const connection: IConnection | undefined = this.dataHandler.getConnectionById(data.payload.connectionId);
 
@@ -201,19 +186,11 @@ export class TS5MessageHandler implements ITS5MessageHandler {
   }
 
   handleChannelsMessage(data: IChannelsMessage) {
-    console.log("handleChannels", data);
-
     // Wait a bit for the connection to be added
     setTimeout(() => {
-      console.log(this.dataHandler.localConnections);
-      console.log(data.payload.connectionId)
-      console.log(this.dataHandler.localConnections.filter((connection: IConnection) => connection.id === data.payload.connectionId)[0]);
-      console.log(this.dataHandler.localConnections.find((connection: IConnection) => connection.id === data.payload.connectionId));
       const connection: IConnection | undefined = this.dataHandler.getConnectionById(data.payload.connectionId);
-      console.log(connection);
       if (connection !== undefined) {
         this.parseChannelInfos(data.payload.info, connection);
-        console.log(data.payload.info)
       }
     }, 1000);
   }
