@@ -1,4 +1,4 @@
-import { IAuthSenderPayload, IChannel, IClient, IConnection, ITS5ConnectionHandler, ITS5DataHandler, ITS5MessageHandler } from "interfaces/teamspeak";
+import { IAuthSenderPayload, IChannel, IClient, IConnection, ITS5ConnectionHandler, ITS5DataHandler, ITS5MessageHandler } from "@interfaces/teamspeak";
 import { TS5DataHandler } from "./dataHandler";
 import { TS5MessageHandler } from "./messageHandler";
 

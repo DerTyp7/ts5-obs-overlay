@@ -1,4 +1,4 @@
-import { IConnection, IChannel, IClient, ITS5DataHandler } from "interfaces/teamspeak";
+import { IConnection, IChannel, IClient, ITS5DataHandler } from "@interfaces/teamspeak";
 
 
 /**
