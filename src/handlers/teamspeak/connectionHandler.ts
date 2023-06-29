@@ -1,6 +1,7 @@
 import { IAuthSenderPayload, IChannel, IClient, IConnection, ITS5ConnectionHandler, ITS5DataHandler, ITS5MessageHandler } from "@interfaces/teamspeak";
 import { TS5DataHandler } from "./dataHandler";
 import { TS5MessageHandler } from "./messageHandler";
+import Logger from "@/utils/logger";
 
 
 // Establish connection to TS5 client
@@ -22,6 +23,8 @@ export class TS5ConnectionHandler implements ITS5ConnectionHandler {
     setClients: React.Dispatch<React.SetStateAction<IClient[]>>,
     setActiveConnectionStateId: React.Dispatch<React.SetStateAction<number>>,
   ) {
+
+
     // Create websocket connection to TS5 client
     this.remoteAppPort = remoteAppPort;
     this.ws = new WebSocket(`ws://localhost:${this.remoteAppPort}`);
