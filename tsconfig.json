@@ -6,16 +6,15 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-    "baseUrl": "./src",
-
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["/src/*"],
-      "@components/*": ["/src/components/*"],
-      "@assets/*": ["/src/assets/*"],
-      "@styles/*": ["/src/styles/*"],
-      "@utils/*": ["/src/utils/*"],
-      "@interfaces/*": ["/src/interfaces/*"],
-      "@handlers/*": ["/src/handlers/*"]
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@styles/*": ["src/styles/*"],
+      "@utils/*": ["src/utils/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@handlers/*": ["src/handlers/*"]
     },
 
     /* Bundler mode */
@@ -32,6 +31,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "tests/teamspeakHandler.test.ts"],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
