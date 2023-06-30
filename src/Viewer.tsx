@@ -16,7 +16,11 @@ export default function Viewer({
 }) {
   return (
     <div className="viewer">
-      {showChannelName ? <h3>{channel?.properties.name}</h3> : null}
+      {showChannelName ? (
+        <div className="channelNameContainer">
+          <h3>{channel?.properties.name}</h3>
+        </div>
+      ) : null}
       {clients?.map((client, i) => {
         //* Client limit
         if (clientLimit != 0 && i >= clientLimit) {
