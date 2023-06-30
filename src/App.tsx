@@ -38,6 +38,7 @@ export default function App() {
   useEffect(() => {
     const remoteAppPort = searchParams.get("remoteAppPort");
 
+    console.log(searchParams.get("hideNonTalking"));
     const tsConnection: ITS5ConnectionHandler = new TS5ConnectionHandler(
       parseInt(remoteAppPort ?? "5899"),
       setConnections,
@@ -55,6 +56,7 @@ export default function App() {
   return (
     <div className="App">
       <Viewer
+        hideNonTalking={searchParams.get("hideNonTalking") === "true"}
         clients={
           clients.map((client) => {
             if (client.channel?.id === currentChannel?.id && client.channel.connection.id === activeConnectionId) {
