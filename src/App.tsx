@@ -56,6 +56,7 @@ export default function App() {
   return (
     <div className="App">
       <Viewer
+        showChannelName={searchParams.get("showChannelName") === "true"}
         hideNonTalking={searchParams.get("hideNonTalking") === "true"}
         clientLimit={searchParams.get("clientLimit") ? parseInt(searchParams.get("clientLimit") ?? "0") : 0}
         clients={
