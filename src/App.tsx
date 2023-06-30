@@ -57,6 +57,7 @@ export default function App() {
     <div className="App">
       <Viewer
         hideNonTalking={searchParams.get("hideNonTalking") === "true"}
+        clientLimit={searchParams.get("clientLimit") ? parseInt(searchParams.get("clientLimit") ?? "0") : 0}
         clients={
           clients.map((client) => {
             if (client.channel?.id === currentChannel?.id && client.channel.connection.id === activeConnectionId) {
