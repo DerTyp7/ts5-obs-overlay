@@ -43,14 +43,15 @@ Start by adding a `?` to the end of the URL and then add the parameters.
 To add multiple parameters, you have to seperate them with a `&`.
 
 Like this: `file://C:/Users/.../index.html?parameter1=value1&parameter2=value2`  
-Real example: `file://C:/Users/.../index.html?remoteAppPort=5899`
+Real example: `file://C:/Users/.../index.html?remoteAppPort=5899&hideNonTalking=true&clientLimit=5`
 
 This is a list of all available parameters (all parameters are optional):
 
-| Parameter        | Description                            | Type    | Default |
-| ---------------- | -------------------------------------- | ------- | ------- |
-| `remoteAppPort`  | The port of the Teamspeak 5 remote app | number  | `5899`  |
-| `hideNonTalking` | Hide all non-talking clients           | boolean | `false` |
+| Parameter        | Description                              | Type    | Default         |
+| ---------------- | ---------------------------------------- | ------- | --------------- |
+| `remoteAppPort`  | The port of the Teamspeak 5 remote app   | number  | `5899`          |
+| `hideNonTalking` | Hide all non-talking clients             | boolean | `false`         |
+| `clientLimit`    | Count of how many client should be shown | number  | `0` (unlimited) |
 
 ## Setup (Developer)
 
