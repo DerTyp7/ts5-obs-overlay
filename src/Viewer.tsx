@@ -5,16 +5,27 @@ export default function Viewer({
   clients,
   channel,
   showChannelName = false,
+  hideNonTalking = false,
 }: {
   clients: IClient[] | undefined;
   channel: IChannel | undefined;
   showChannelName?: boolean;
+  hideNonTalking?: boolean;
 }) {
   return (
     <div className="viewer">
       {showChannelName ? <h3>{channel?.properties.name}</h3> : null}
       {clients?.map((client) => {
         if (client) {
+          //* Non-talking client
+          if (
+            hideNonTalking &&
+            (client.properties.inputMuted || client.properties.outputMuted || client.talkStatus == 0)
+          ) {
+            return null;
+          }
+
+          //* Normal client
           return (
             <div className="client" key={`${client.id}-${client.channel?.connection.id}`}>
               {client.properties.outputMuted ? (
