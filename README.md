@@ -47,11 +47,12 @@ Real example: `file://C:/Users/.../index.html?remoteAppPort=5899&hideNonTalking=
 
 This is a list of all available parameters (all parameters are optional):
 
-| Parameter        | Description                              | Type    | Default         |
-| ---------------- | ---------------------------------------- | ------- | --------------- |
-| `remoteAppPort`  | The port of the Teamspeak 5 remote app   | number  | `5899`          |
-| `hideNonTalking` | Hide all non-talking clients             | boolean | `false`         |
-| `clientLimit`    | Count of how many client should be shown | number  | `0` (unlimited) |
+| Parameter         | Description                              | Type    | Default         |
+| ----------------- | ---------------------------------------- | ------- | --------------- |
+| `remoteAppPort`   | The port of the Teamspeak 5 remote app   | number  | `5899`          |
+| `hideNonTalking`  | Hide all non-talking clients             | boolean | `false`         |
+| `clientLimit`     | Count of how many client should be shown | number  | `0` (unlimited) |
+| `showChannelName` | Display the channel name                 | boolean | `false`         |
 
 ## Setup (Developer)
 
