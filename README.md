@@ -14,7 +14,7 @@ This App uses the new "Remote Apps" feature of Teamspeak 5.
 
 1. Download the `index.html` of the latest release from [here](https://github.com/DerTyp876/ts5-obs-overlay/releases/tag/v1.0.0)
    ![image](https://github.com/DerTyp876/ts5-obs-overlay/assets/76851529/04dc3a66-c493-429b-b4ae-44bade473ad6)  
-  1.1. (optional) You can rename the file. Just remember using the new file name in the future instead of `index.html` 
+   1.1. (optional) You can rename the file. Just remember using the new file name in the future instead of `index.html`
 2. Go into the Teamspeak 5 Settings and enable "Remote Apps"  
    ![image](https://github.com/DerTyp876/ts5-obs-overlay/assets/76851529/b31bc553-fde2-46ab-b07c-d3c81339cc7d)
 
@@ -34,7 +34,7 @@ This App uses the new "Remote Apps" feature of Teamspeak 5.
 You can customize the overlay by adding parameters to the URL of the Browser Source.
 
 1. Open your Browser Source settings
-2. **Untick** the checkbox "Local File"  
+2. **Untick** the checkbox "Local File"
 3. Add `file://` to the beginning of the URL  
    ![image](https://github.com/DerTyp876/ts5-obs-overlay/assets/76851529/87985b4c-4397-4681-9635-239d1e382c24)
 4. Start adding parameters like discribed below
@@ -47,9 +47,10 @@ Real example: `file://C:/Users/.../index.html?remoteAppPort=5899`
 
 This is a list of all available parameters (all parameters are optional):
 
-| Parameter       | Description                            | Default |
-| --------------- | -------------------------------------- | ------- |
-| `remoteAppPort` | The port of the Teamspeak 5 remote app | `5899`  |
+| Parameter        | Description                            | Type    | Default |
+| ---------------- | -------------------------------------- | ------- | ------- |
+| `remoteAppPort`  | The port of the Teamspeak 5 remote app | number  | `5899`  |
+| `hideNonTalking` | Hide all non-talking clients           | boolean | `false` |
 
 ## Setup (Developer)
 
