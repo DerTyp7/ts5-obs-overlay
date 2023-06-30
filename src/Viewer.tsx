@@ -6,16 +6,23 @@ export default function Viewer({
   channel,
   showChannelName = false,
   hideNonTalking = false,
+  clientLimit = 0,
 }: {
   clients: IClient[] | undefined;
   channel: IChannel | undefined;
   showChannelName?: boolean;
   hideNonTalking?: boolean;
+  clientLimit?: number;
 }) {
   return (
     <div className="viewer">
       {showChannelName ? <h3>{channel?.properties.name}</h3> : null}
-      {clients?.map((client) => {
+      {clients?.map((client, i) => {
+        //* Client limit
+        if (clientLimit != 0 && i >= clientLimit) {
+          return null;
+        }
+
         if (client) {
           //* Non-talking client
           if (
