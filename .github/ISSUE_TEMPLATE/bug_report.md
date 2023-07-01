@@ -17,7 +17,7 @@ Example or explanation to reproduce the issue.
 ## Expected behavior
 A clear and concise description of what you expected to happen.
 
-**Desktop (please complete the following information):**
+**Your environment:**
  - OS: [e.g. Windows 11]
  - OBS version: [e.g. 29.1.3]
  - Overlay version [e.g. v1.1.0]
