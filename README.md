@@ -12,7 +12,7 @@ This App uses the new "Remote Apps" feature of Teamspeak 5.
 
 ## Setup
 
-1. Download the `index.html` of the latest release from [here](https://github.com/DerTyp7/ts5-obs-overlay/releases/tag/v1.0.0)
+1. Download the `index.html` of the latest release from [here](https://github.com/DerTyp7/ts5-obs-overlay/releases/latest)
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/04dc3a66-c493-429b-b4ae-44bade473ad6)  
    1.1. (optional) You can rename the file. Just remember using the new file name in the future instead of `index.html`
 2. Go into the Teamspeak 5 Settings and enable "Remote Apps"  
