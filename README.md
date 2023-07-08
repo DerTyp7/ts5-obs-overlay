@@ -12,9 +12,9 @@ This App uses the new "Remote Apps" feature of Teamspeak 5.
 
 ## Setup
 
-1. Download the `index.html` of the latest release from [here](https://github.com/DerTyp7/ts5-obs-overlay/releases/latest)
+1. Download the `ts5-overlay-{version}.html` of the latest release from [here](https://github.com/DerTyp7/ts5-obs-overlay/releases/latest)
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/04dc3a66-c493-429b-b4ae-44bade473ad6)  
-   1.1. (optional) You can rename the file. Just remember using the new file name in the future instead of `index.html`
+   1.1. (optional) You can rename the file. Just remember using the new file name in the future instead of `ts5-overlay-{version}.html`
 2. Go into the Teamspeak 5 Settings and enable "Remote Apps"  
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/b31bc553-fde2-46ab-b07c-d3c81339cc7d)
 
@@ -22,7 +22,7 @@ This App uses the new "Remote Apps" feature of Teamspeak 5.
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/0198b468-bb96-4b65-bdd4-3d6bb3ef7d25)  
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/58ad399f-5344-456f-b243-6e267b489fd5)
 
-4. Tick the checkbox "Local File" and select the downloaded `index.html`  
+4. Tick the checkbox "Local File" and select the downloaded `ts5-overlay-{version}.html`  
     4.1. Set the width and height to your desired size (e.g. 1920x1080 OR 1280x720)  
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/5ad8ce69-645b-45e7-acc3-ce7ba8d7f8ab)
 
@@ -42,8 +42,8 @@ You can customize the overlay by adding parameters to the URL of the Browser Sou
 Start by adding a `?` to the end of the URL and then add the parameters.
 To add multiple parameters, you have to seperate them with a `&`.
 
-Like this: `file://C:/Users/.../index.html?parameter1=value1&parameter2=value2`  
-Real example: `file://C:/Users/.../index.html?remoteAppPort=5899&hideNonTalking=true&clientLimit=5`
+Like this: `file://C:/Users/.../ts5-overlay-{version}.html?parameter1=value1&parameter2=value2`  
+Real example: `file://C:/Users/.../ts5-overlay-{version}.html?remoteAppPort=5899&hideNonTalking=true&clientLimit=5`
 
 This is a list of all available parameters (all parameters are optional):
 
