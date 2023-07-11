@@ -9,6 +9,8 @@ This App uses the new "Remote Apps" feature of Teamspeak 5.
   - [Setup](#setup)
     - [Customization (Parameters)](#customization-parameters)
   - [Setup (Developer)](#setup-developer)
+  - [Common Issues](#common-issues)
+    - [The overlay is empty, but i'm connected to a Teamspeak 5 server](#the-overlay-is-empty-but-im-connected-to-a-teamspeak-5-server)
 
 ## Setup
 
@@ -59,3 +61,17 @@ This is a list of all available parameters (all parameters are optional):
 1. Clone this repository
 2. Run `npm install`
 3. To start the development server run `npm run dev`
+
+## Common Issues
+
+### The overlay is empty, but i'm connected to a Teamspeak 5 server
+
+Sadly TeamSpeak5 does not give us any information about the current active server tab.  
+So we try currently use a workaround, where the active server tab is determined by looking on which server the your hardware input was unmuted the latest, since the non-active server tabs in TS5 usually mute the client’s microphone.
+
+However this workaround is not 100% accurate and can fail in some cases.
+
+Possible fixes:
+
+- Unmute and mute yourself in the active server tab (Just a normal unmute and mute, not the hardware mute)
+- Reconnect to the TS5 server while the overlay is open
