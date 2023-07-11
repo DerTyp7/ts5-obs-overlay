@@ -54,7 +54,7 @@ export class TS5ConnectionHandler implements ITS5ConnectionHandler {
       type: "auth",
       payload: {
         identifier: "de.tealfire.obs",
-        version: "1.0.0",
+        version: "1.1.2",
         name: "TS5 OBS Overlay",
         description: "A OBS overlay for TS5 by DerTyp876",
         content: {
