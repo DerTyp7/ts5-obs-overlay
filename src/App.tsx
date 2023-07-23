@@ -5,53 +5,13 @@ import { useEffect, useState } from "react";
 import Viewer from "./Viewer";
 import { useSearchParams } from "react-router-dom";
 import { TS5ConnectionHandler } from "@handlers/teamspeak/connectionHandler";
+import useTSRemoteApp from "./hooks/useTSRemoteApp";
 
 export default function App() {
   const [searchParams] = useSearchParams();
-
-  const [clients, setClients] = useState<IClient[]>([]);
-  const [channels, setChannels] = useState<IChannel[]>([]);
-  const [connections, setConnections] = useState<IConnection[]>([]);
-  const [activeConnectionId, setActiveConnectionId] = useState<number>(1);
-
-  const [currentConnection, setCurrentConnection] = useState<IConnection | undefined>(undefined);
-  const [currentChannel, setCurrentChannel] = useState<IChannel | undefined>(undefined);
-  const [currentClient, setCurrentClient] = useState<IClient | undefined>(undefined);
-
-  function setCurrentStates() {
-    const currentConnection = connections.find((connection) => connection.id === activeConnectionId);
-    setCurrentConnection(currentConnection);
-
-    if (currentConnection) {
-      const currentClient = clients.find((client) => client.id === currentConnection.clientId);
-      setCurrentClient(currentClient);
-      if (currentClient) {
-        const currentChannel = channels.find((channel) => channel.id === currentClient.channel?.id);
-        setCurrentChannel(currentChannel);
-        if (currentChannel) {
-          return currentChannel;
-        }
-      }
-    }
-  }
-
-  useEffect(() => {
-    const remoteAppPort = searchParams.get("remoteAppPort");
-
-    console.log(searchParams.get("hideNonTalking"));
-    const tsConnection: ITS5ConnectionHandler = new TS5ConnectionHandler(
-      parseInt(remoteAppPort ?? "5899"),
-      setConnections,
-      setChannels,
-      setClients,
-      setActiveConnectionId
-    );
-    tsConnection.connect();
-  }, []);
-
-  useEffect(() => {
-    setCurrentStates();
-  }, [clients, channels, connections, activeConnectionId]);
+  const { clients, channels, connections, activeConnectionId, currentChannel } = useTSRemoteApp({
+    remoteAppPort: 5899,
+  });
 
   return (
     <div className="App">
