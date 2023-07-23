@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "@styles/App.scss";
-import { IClient } from "@interfaces/teamspeak";
 import Viewer from "./Viewer";
 import { useSearchParams } from "react-router-dom";
-import useTSRemoteApp from "./hooks/useTSRemoteApp";
+import useTSRemoteApp, { IClient } from "react-ts5-remote-app-api";
 
 export default function App() {
   const [searchParams] = useSearchParams();
