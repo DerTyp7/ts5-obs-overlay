@@ -1,16 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "@styles/App.scss";
-import { IChannel, IClient, IConnection, ITS5ConnectionHandler } from "@interfaces/teamspeak";
-import { useEffect, useState } from "react";
+import { IClient } from "@interfaces/teamspeak";
 import Viewer from "./Viewer";
 import { useSearchParams } from "react-router-dom";
-import { TS5ConnectionHandler } from "@handlers/teamspeak/connectionHandler";
 import useTSRemoteApp from "./hooks/useTSRemoteApp";
 
 export default function App() {
   const [searchParams] = useSearchParams();
-  const { clients, channels, connections, activeConnectionId, currentChannel } = useTSRemoteApp({
-    remoteAppPort: 5899,
+  const { clients, activeConnectionId, currentChannel } = useTSRemoteApp({
+    remoteAppPort: parseInt(searchParams.get("remoteAppPort") ?? "5899"),
   });
 
   return (
