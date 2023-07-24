@@ -1,5 +1,5 @@
-import { IChannel, IClient } from "@interfaces/teamspeak";
 import "@styles/Viewer.scss";
+import { IChannel, IClient } from "react-ts5-remote-app-api";
 
 export default function Viewer({
   clients,
