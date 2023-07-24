@@ -3,6 +3,8 @@
 This is a overlay for OBS to show the current talking clients in your Teamspeak 5 Channel.  
 This App uses the new "Remote Apps" feature of Teamspeak 5.
 
+This overlay uses the [Teamspeak 5 Remote App API](https://github.com/DerTyp7/react-ts5-remote-app-api).
+
 ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/d0ab06f2-1a36-479d-826f-bd4bd3d405b7)
 
 - [Teamspeak5-OBS-Overlay](#teamspeak5-obs-overlay)
