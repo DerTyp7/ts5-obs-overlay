@@ -1,13 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "@styles/App.scss";
-import Viewer from "./Viewer";
+
 import { useSearchParams } from "react-router-dom";
 import useTSRemoteApp, { IClient } from "react-ts5-remote-app-api";
+import Viewer from "./Viewer";
 
 export default function App() {
   const [searchParams] = useSearchParams();
   const { clients, activeConnectionId, currentChannel } = useTSRemoteApp({
     remoteAppPort: parseInt(searchParams.get("remoteAppPort") ?? "5899"),
+    auth: {
+      identifier: "de.tealfire.obs",
+      version: "1.2.1",
+      name: "TS5 OBS Overlay",
+      description: "A OBS overlay for TS5 by DerTyp876",
+    },
   });
 
   return (
