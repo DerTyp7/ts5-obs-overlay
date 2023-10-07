@@ -9,11 +9,9 @@ This overlay uses the [Teamspeak 5 Remote App API](https://github.com/DerTyp7/re
 
 - [Teamspeak5-OBS-Overlay](#teamspeak5-obs-overlay)
   - [Usage](#usage)
-    - [Online (Recommended)](#online-recommended)
-    - [Offline](#offline)
   - [Settings (Parameters)](#settings-parameters)
-    - [You are using the **online** version?](#you-are-using-the-online-version)
-    - [You are using the **offline** version?](#you-are-using-the-offline-version)
+    - [Are you using the **online** version (recommended version)?](#are-you-using-the-online-version-recommended-version)
+    - [Are you using the **offline** version?](#are-you-using-the-offline-version)
     - [Adding Parameters](#adding-parameters)
   - [Setup (Developer)](#setup-developer)
   - [Common Issues](#common-issues)
@@ -21,45 +19,36 @@ This overlay uses the [Teamspeak 5 Remote App API](https://github.com/DerTyp7/re
 
 ## Usage
 
-### Online (Recommended)
-
-1. **Open OBS** and create a new **Browser Source**
-2. For the **URL** use <https://dertyp7.github.io/ts5-obs-overlay/>
-3. Set the **width and height** to your desired size (e.g. 1920x1080 OR 1280x720)
-4. Press **OK** and you should now get a **notification in TS5 -> Allow it**
-5. **Done.** You should now see the overlay in OBS (when connected to server)
-
-> Note: This URL will always use the **latest** version of the overlay. If you want to use a **specific version**, go to [Offline](#offline) and use the desired version.
-
-### Offline
-
-1. Download the `ts5-overlay-{version}.html` of the latest release from [here](https://github.com/DerTyp7/ts5-obs-overlay/releases/latest)
-   ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/04dc3a66-c493-429b-b4ae-44bade473ad6)  
-   1.1. (optional) You can rename the file. Just remember using the new file name in the future instead of `ts5-overlay-{version}.html`
-2. Go into the Teamspeak 5 Settings and enable "Remote Apps"  
+1. Go into the Teamspeak 5 Settings and enable "Remote Apps"  
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/b31bc553-fde2-46ab-b07c-d3c81339cc7d)
 
-3. Add a new Browser Source to your OBS Scene  
+2. Add a new Browser Source to your OBS Scene  
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/0198b468-bb96-4b65-bdd4-3d6bb3ef7d25)  
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/58ad399f-5344-456f-b243-6e267b489fd5)
 
-4. Tick the checkbox "Local File" and select the downloaded `ts5-overlay-{version}.html`  
-    4.1. Set the width and height to your desired size (e.g. 1920x1080 OR 1280x720)  
-   ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/5ad8ce69-645b-45e7-acc3-ce7ba8d7f8ab)
+3. Configure **Browser Source** (Use **ONE** of the following methods)
 
+   1. **Online Usage (recommended):** Enter **`https://dertyp7.github.io/ts5-obs-overlay/`** as URL
+   2. **Offline Usage (ignore this if you use the online usage above):**
+      1. Download the `ts5-overlay-{version}.html` of the latest release from [here](https://github.com/DerTyp7/ts5-obs-overlay/releases/latest)
+         ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/04dc3a66-c493-429b-b4ae-44bade473ad6)  
+         1.1. (optional) You can rename the file. Just remember using the new file name in the future instead of `ts5-overlay-{version}.html`
+      2. Tick the checkbox "Local File" and select the downloaded `ts5-overlay-{version}.html`
+
+4. Set the width and height to your desired size (e.g. 1920x1080 OR 1280x720)
 5. You should now receive a notification in Teamspeak 5 that the app is allowed to connect to your Teamspeak 5 client. Allow it. (If you don't get a notification, restart Teamspeak 5 and OBS -> try again)  
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/40faa435-e128-415f-98eb-a9e8809e8f65)
 
 ## Settings (Parameters)
 
-You can customize the overlay by adding parameters to the URL of the Browser Source.
+You can customize the overlay by **adding parameters** to the URL of the **Browser Source**.
 
-### You are using the **online** version?
+### Are you using the **online** version (recommended version)?
 
 1. Open your Browser Source settings
 2. Start adding parameters like discribed in [Adding Parameters](#adding-parameters)
 
-### You are using the **offline** version?
+### Are you using the **offline** version?
 
 1. Open your Browser Source settings
 2. **Untick** the checkbox "Local File"
