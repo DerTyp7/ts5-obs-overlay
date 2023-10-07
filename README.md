@@ -99,6 +99,7 @@ This is a **list** of **all available parameters** (all parameters are optional)
 ## Common Issues
 
 ### The overlay is empty, but i'm connected to a Teamspeak 5 server
+
 **Fix 1**  
 Make sure you accepted the notifiaction in your Teamspeak Client.
 
