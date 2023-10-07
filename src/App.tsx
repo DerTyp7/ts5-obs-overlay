@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import "@styles/App.scss";
 
 import { useSearchParams } from "react-router-dom";
