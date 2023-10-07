@@ -8,13 +8,30 @@ This overlay uses the [Teamspeak 5 Remote App API](https://github.com/DerTyp7/re
 ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/d0ab06f2-1a36-479d-826f-bd4bd3d405b7)
 
 - [Teamspeak5-OBS-Overlay](#teamspeak5-obs-overlay)
-  - [Setup](#setup)
-    - [Customization (Parameters)](#customization-parameters)
+  - [Usage](#usage)
+    - [Online (Recommended)](#online-recommended)
+    - [Offline](#offline)
+  - [Settings (Parameters)](#settings-parameters)
+    - [You are using the **online** version?](#you-are-using-the-online-version)
+    - [You are using the **offline** version?](#you-are-using-the-offline-version)
+    - [Adding Parameters](#adding-parameters)
   - [Setup (Developer)](#setup-developer)
   - [Common Issues](#common-issues)
     - [The overlay is empty, but i'm connected to a Teamspeak 5 server](#the-overlay-is-empty-but-im-connected-to-a-teamspeak-5-server)
 
-## Setup
+## Usage
+
+### Online (Recommended)
+
+1. **Open OBS** and create a new **Browser Source**
+2. For the **URL** use <https://dertyp7.github.io/ts5-obs-overlay/>
+3. Set the **width and height** to your desired size (e.g. 1920x1080 OR 1280x720)
+4. Press **OK** and you should now get a **notification in TS5 -> Allow it**
+5. **Done.** You should now see the overlay in OBS (when connected to server)
+
+> Note: This URL will always use the **latest** version of the overlay. If you want to use a **specific version**, go to [Offline](#offline) and use the desired version.
+
+### Offline
 
 1. Download the `ts5-overlay-{version}.html` of the latest release from [here](https://github.com/DerTyp7/ts5-obs-overlay/releases/latest)
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/04dc3a66-c493-429b-b4ae-44bade473ad6)  
@@ -33,23 +50,37 @@ This overlay uses the [Teamspeak 5 Remote App API](https://github.com/DerTyp7/re
 5. You should now receive a notification in Teamspeak 5 that the app is allowed to connect to your Teamspeak 5 client. Allow it. (If you don't get a notification, restart Teamspeak 5 and OBS -> try again)  
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/40faa435-e128-415f-98eb-a9e8809e8f65)
 
-### Customization (Parameters)
+## Settings (Parameters)
 
 You can customize the overlay by adding parameters to the URL of the Browser Source.
+
+### You are using the **online** version?
+
+1. Open your Browser Source settings
+2. Start adding parameters like discribed in [Adding Parameters](#adding-parameters)
+
+### You are using the **offline** version?
 
 1. Open your Browser Source settings
 2. **Untick** the checkbox "Local File"
 3. Add `file://` to the beginning of the URL  
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/87985b4c-4397-4681-9635-239d1e382c24)
-4. Start adding parameters like discribed below
+4. Start adding parameters like discribed in [Adding Parameters](#adding-parameters)
+
+### Adding Parameters
 
 Start by adding a `?` to the end of the URL and then add the parameters.
 To add multiple parameters, you have to seperate them with a `&`.
 
-Like this: `file://C:/Users/.../ts5-overlay-{version}.html?parameter1=value1&parameter2=value2`  
-Real example: `file://C:/Users/.../ts5-overlay-{version}.html?remoteAppPort=5899&hideNonTalking=true&clientLimit=5`
+Like this:  
+**Online:** _`https://dertyp7.github.io/ts5-obs-overlay/?parameter1=value1&parameter2=value2`_  
+**Offline:** _`file://C:/Users/.../ts5-overlay-{version}.html?parameter1=value1&parameter2=value2`_
 
-This is a list of all available parameters (all parameters are optional):
+Real example:  
+**Online:** _`https://dertyp7.github.io/ts5-obs-overlay/?remoteAppPort=5899&hideNonTalking=true&clientLimit=5&showChannelName=true`_  
+**Offline:** _`file://C:/Users/.../ts5-overlay-{version}.html?remoteAppPort=5899&hideNonTalking=true&clientLimit=5&showChannelName=true`_
+
+This is a **list** of **all available parameters** (all parameters are optional):
 
 | Parameter         | Description                              | Type    | Default         |
 | ----------------- | ---------------------------------------- | ------- | --------------- |
