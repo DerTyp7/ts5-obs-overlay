@@ -11,7 +11,7 @@ export default function App() {
     remoteAppPort: parseInt(searchParams.get("remoteAppPort") ?? "5899"),
     auth: {
       identifier: "de.tealfire.obs",
-      version: "1.3.0",
+      version: "1.3.1",
       name: "TS5 OBS Overlay",
       description: "A OBS overlay for TS5 by DerTyp7",
     },
