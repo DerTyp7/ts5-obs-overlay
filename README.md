@@ -24,10 +24,10 @@ This overlay uses the [Teamspeak 5 Remote App API](https://github.com/DerTyp7/re
 
 ### Quick instructions (online usage only)
 
-1. Go into the Teamspeak 5 Settings and enable "Remote Apps"
-2. Add a new Browser Source to your OBS Scene and enter `https://dertyp7.github.io/ts5-obs-overlay/` as URL
-3. Set the width and height to your desired size (e.g. 1920x1080 OR 1280x720)
-4. You should now receive a notification in Teamspeak 5 that the app is allowed to connect to your Teamspeak 5 client. Allow it.
+1. Go into the **Teamspeak 5 Settings** and enable "**Remote Apps**"
+2. Add a **new Browser Source** to your **OBS** Scene and enter `https://dertyp7.github.io/ts5-obs-overlay/` as URL
+3. Set the **width and height** to your desired size (e.g. 1920x1080 OR 1280x720)
+4. You should now receive a **notification in Teamspeak** 5 that the app is allowed to connect to your Teamspeak 5 client. **Allow it**.
 
 ### Instructions
 
