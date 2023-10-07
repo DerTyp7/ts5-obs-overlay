@@ -99,7 +99,10 @@ This is a **list** of **all available parameters** (all parameters are optional)
 ## Common Issues
 
 ### The overlay is empty, but i'm connected to a Teamspeak 5 server
+**Fix 1**  
+Make sure you accepted the notifiaction in your Teamspeak Client.
 
+**Fix 2**  
 Sadly TeamSpeak5 does not give us any information about the current active server tab.  
 So we try currently use a workaround, where the active server tab is determined by looking on which server the your hardware input was unmuted the latest, since the non-active server tabs in TS5 usually mute the client’s microphone.
 
