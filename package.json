@@ -1,9 +1,27 @@
 {
   "name": "ts5-obs-overlay",
-  "private": true,
+  "private": false,
   "version": "1.3.1",
   "description": "Overlay for OBS to show the current talking clients in your Teamspeak 5 Channel",
+  "author": "DerTyp7",
   "homepage": "https://dertyp7.github.io/ts5-obs-overlay",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DerTyp7/ts5-obs-overlay"
+  },
+  "keywords": [
+    "ts5",
+    "teamspeak",
+    "overlay",
+    "remote app",
+    "obs",
+    "typescript",
+    "react",
+    "vite"
+  ],
+  "bugs": {
+    "url": "https://github.com/DerTyp7/ts5-obs-overlay/issues"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
