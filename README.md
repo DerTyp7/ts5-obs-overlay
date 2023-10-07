@@ -18,6 +18,7 @@ This overlay uses the [Teamspeak 5 Remote App API](https://github.com/DerTyp7/re
   - [Setup (Developer)](#setup-developer)
   - [Common Issues](#common-issues)
     - [The overlay is empty, but i'm connected to a Teamspeak 5 server](#the-overlay-is-empty-but-im-connected-to-a-teamspeak-5-server)
+    - [OBS doesn't show the latest version of the overlay](#obs-doesnt-show-the-latest-version-of-the-overlay)
 
 ## Usage
 
@@ -108,3 +109,8 @@ Possible fixes:
 
 - Unmute and mute yourself in the active server tab (Just a normal unmute and mute, not the hardware mute)
 - Reconnect to the TS5 server while the overlay is open
+
+### OBS doesn't show the latest version of the overlay
+
+This can happen if the OBS Browser Source is caching the overlay.  
+To prevent this, open the Browser Source settings and click on "Refresh cache of current page".
