@@ -116,4 +116,4 @@ Possible fixes:
 ### OBS doesn't show the latest version of the overlay
 
 This can happen if the OBS Browser Source is caching the overlay.  
-To prevent this, open the Browser Source settings and click on "Refresh cache of current page".
+To fix this, open the Browser Source settings and click on "Refresh cache of current page".
