@@ -47,7 +47,7 @@ This overlay uses the [Teamspeak 5 Remote App API](https://github.com/DerTyp7/re
          1.1. (optional) You can rename the file. Just remember using the new file name in the future instead of `ts5-overlay-{version}.html`
       2. Tick the checkbox "Local File" and select the downloaded `ts5-overlay-{version}.html`
 
-4. Set the width and height to your desired size (e.g. 1920x1080 OR 1280x720)
+4. Set the width and height to your desired size. Recommended is a ratio of 1:1 or 1:2 (e.g. 1500x3000 OR 1000x2000) 
 5. You should now receive a notification in Teamspeak 5 that the app is allowed to connect to your Teamspeak 5 client. Allow it. (If you don't get a notification, restart Teamspeak 5 and OBS -> try again)  
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/40faa435-e128-415f-98eb-a9e8809e8f65)
 
