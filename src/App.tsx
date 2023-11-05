@@ -1,8 +1,9 @@
 import "@styles/App.scss";
 
-import { Route, Routes, useSearchParams } from "react-router-dom";
+import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import useTSRemoteApp, { IClient } from "react-ts5-remote-app-api";
 import Viewer from "./Viewer";
+import Generator from "./Generator";
 
 export default function App() {
   const [searchParams] = useSearchParams();
@@ -37,6 +38,8 @@ export default function App() {
           />
         }
       />
+      <Route path="/generate" element={<Generator />} />
+      <Route path="*" element={<Navigate to="/generate" replace />} />
     </Routes>
   );
 }
