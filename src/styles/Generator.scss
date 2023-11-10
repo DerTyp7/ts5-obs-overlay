@@ -1,0 +1,222 @@
+// Breakpoints
+$breakpoint-1: 760px;
+$breakpoint-2: 565px;
+
+body {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #232528;
+}
+
+@keyframes tooltipAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.generator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  color: white;
+
+  button {
+    background-color: #202024;
+    color: #fff;
+    font-weight: bold;
+    border: 2px solid #31f399;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+    &:hover {
+      background-color: #42d486;
+      color: #202024;
+    }
+  }
+
+  .output {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+    position: relative;
+    height: 20px;
+
+    .url {
+      white-space: nowrap;
+      overflow: auto;
+      font-weight: bold;
+      width: 500px;
+      padding: 5px 10px;
+      background-color: #313136;
+      border-radius: 5px;
+      text-align: center;
+
+      @media screen and (max-width: $breakpoint-1) {
+        width: 300px;
+      }
+
+      @media screen and (max-width: $breakpoint-2) {
+        width: 200px;
+      }
+    }
+    .copy {
+      padding: 5px 10px;
+      border: 2px solid #31f39973;
+      transition: all 100ms ease-in-out;
+
+      &:hover {
+        border-color: #42d486;
+        background-color: transparent;
+        color: #fff;
+      }
+    }
+
+    .copiedTooltip {
+      opacity: 0;
+      position: absolute;
+      right: -90px;
+      background-color: #31f399;
+      color: #202024;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+  }
+  .configuration {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex: 1;
+    gap: 30px;
+
+    h1 {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      border-right: 5px solid rgb(131, 131, 131);
+      gap: 10px;
+    }
+
+    .viewer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      background-color: #fff;
+    }
+
+    .option {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: left;
+      column-gap: 10px;
+
+      input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #31f399;
+        border-radius: 5px;
+        background-color: #202024;
+        outline: none;
+        transition: all 200ms ease-in-out;
+        position: relative;
+        color: white;
+        text-align: center;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        // make it a cross when checked
+        &:checked {
+          &:after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 2px;
+            background-color: #31f399;
+            transform: rotate(45deg);
+          }
+          &:before {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 2px;
+            background-color: #31f399;
+            transform: rotate(-45deg);
+          }
+
+          &:after,
+          &:before {
+            top: 7px;
+            left: 3px;
+          }
+        }
+        cursor: pointer;
+      }
+
+      input[type="number"] {
+        width: 50px;
+        cursor: text;
+      }
+
+      label {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+// custom dark themed scrollbar
+::-webkit-scrollbar {
+  width: 5px;
+  height: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: #363638;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #31f39973;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #48ee95;
+}
