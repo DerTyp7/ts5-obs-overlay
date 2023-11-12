@@ -33,7 +33,7 @@ export default function Viewer({
     <div className="viewer">
       {showChannelName ? (
         <div className="channelNameContainer">
-          <h3>{currentChannel?.properties.name}</h3>
+          <h1>{currentChannel?.properties.name}</h1>
         </div>
       ) : null}
       {currentClients?.map((client, i) => {

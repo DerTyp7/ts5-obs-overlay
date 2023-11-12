@@ -3,20 +3,25 @@
   flex-direction: column;
   gap: 0 0;
   font-size: 3rem;
+  color: white;
+  box-sizing: border-box;
+  padding: 10px;
 
+  h1,
+  p {
+    margin: 0;
+    background-color: #2f313680;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 20ch;
+  }
   .channelNameContainer {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    h3 {
-      font-size: 1.7rem;
-      font-weight: 500;
-      margin: 0;
-      background-color: rgba(47, 49, 54, 0.5);
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
-      color: white;
-    }
   }
 
   .client {
@@ -27,22 +32,13 @@
     margin: 0.5rem 0;
 
     svg {
-      width: 2.8rem;
-      height: 2.8rem;
+      width: 2.1rem;
+      aspect-ratio: 1/1;
       margin-right: 0.5rem;
     }
-    p {
-      margin: 0;
-      color: white;
-      background-color: rgba(47, 49, 54, 0.5);
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
 
-      // ellipsis after 22 characters
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 20ch;
+    p {
+      font-size: 1.4rem;
     }
   }
 }
