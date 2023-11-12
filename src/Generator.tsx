@@ -62,7 +62,7 @@ export default function Generator() {
         <p>1. Customize your settings</p>
         <p>2. Copy the generated URL</p>
         <p>3. Paste the URL into the BrowserSource URL field in OBS</p>
-        <a href="#">Click here for detailed instructions</a>
+        <a href="https://github.com/DerTyp7/ts5-obs-overlay#detailed-instructions">Click here for detailed instructions</a>
       </div>
 
       {/* Output Section */}
