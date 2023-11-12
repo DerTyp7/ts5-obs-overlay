@@ -211,6 +211,18 @@ $breakpoint-3: 600px;
         background-repeat: no-repeat;
         background-size: cover;
         min-height: 500px;
+        h1 {
+          font-size: 2rem;
+        }
+        .client {
+          svg {
+            width: 2rem;
+          }
+
+          p {
+            font-size: 2rem;
+          }
+        }
       }
     }
   }
