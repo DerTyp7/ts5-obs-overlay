@@ -1,27 +1,42 @@
 import "@styles/Viewer.scss";
-import { IChannel, IClient } from "react-ts5-remote-app-api";
+import useTSRemoteApp, { IClient } from "react-ts5-remote-app-api";
 
 export default function Viewer({
-  clients,
-  channel,
+  remoteAppPort = 5899,
   showChannelName = false,
   hideNonTalking = false,
   clientLimit = 0,
 }: {
-  clients: IClient[] | undefined;
-  channel: IChannel | undefined;
+  remoteAppPort?: number;
   showChannelName?: boolean;
   hideNonTalking?: boolean;
   clientLimit?: number;
 }) {
+  const { clients, activeConnectionId, currentChannel } = useTSRemoteApp({
+    remoteAppPort: remoteAppPort,
+    auth: {
+      identifier: "de.tealfire.obs",
+      version: "2.0.0",
+      name: "TS5 OBS Overlay",
+      description: "A OBS overlay for TS5 by DerTyp7",
+    },
+    logging: true,
+  });
+
+  const currentClients = clients.map((client) => {
+    if (client.channel?.id === currentChannel?.id && client.channel.connection.id === activeConnectionId) {
+      return client;
+    }
+  }) as IClient[];
+
   return (
     <div className="viewer">
       {showChannelName ? (
         <div className="channelNameContainer">
-          <h3>{channel?.properties.name}</h3>
+          <h1>{currentChannel?.properties.name}</h1>
         </div>
       ) : null}
-      {clients?.map((client, i) => {
+      {currentClients?.map((client, i) => {
         //* Client limit
         if (clientLimit != 0 && i >= clientLimit) {
           return null;
@@ -29,10 +44,7 @@ export default function Viewer({
 
         if (client) {
           //* Non-talking client
-          if (
-            hideNonTalking &&
-            (client.properties.inputMuted || client.properties.outputMuted || client.talkStatus == 0)
-          ) {
+          if (hideNonTalking && (client.properties.inputMuted || client.properties.outputMuted || client.talkStatus == 0)) {
             return null;
           }
 
@@ -73,16 +85,7 @@ export default function Viewer({
                       d="M88.62,54.15V64A24.69,24.69,0,0,1,64,88.62a25.26,25.26,0,0,1-8.38-1.46l-7.39,7.39A34,34,0,0,0,64,98.46,34.5,34.5,0,0,0,98.46,64V54.15a4.92,4.92,0,1,1,9.85,0V64a44.31,44.31,0,0,1-39.38,44v10.15H88.62a4.92,4.92,0,0,1,0,9.85H39.38a4.92,4.92,0,1,1,0-9.85H59.08V108A43.3,43.3,0,0,1,41,101.77L21.46,121.31a2.46,2.46,0,0,1-3.54,0L11.62,115a2.46,2.46,0,0,1,0-3.54l94.92-94.92a2.46,2.46,0,0,1,3.54,0l6.31,6.31a2.46,2.46,0,0,1,0,3.54ZM22.92,80.46A43.3,43.3,0,0,1,19.69,64V54.15a4.92,4.92,0,1,1,9.85,0V64a35.94,35.94,0,0,0,1.15,8.69ZM39.38,64V24.62a24.62,24.62,0,0,1,47.77-8.38Z"
                       fill="#d8d8d8"
                     />
-                    <rect
-                      x="-5.93"
-                      y="61.89"
-                      width="139.87"
-                      height="14.02"
-                      rx="2.87"
-                      ry="2.87"
-                      transform="translate(-29.97 65.43) rotate(-45)"
-                      fill="#c9070a"
-                    />
+                    <rect x="-5.93" y="61.89" width="139.87" height="14.02" rx="2.87" ry="2.87" transform="translate(-29.97 65.43) rotate(-45)" fill="#c9070a" />
                   </g>
                 </svg>
               ) : client.properties.outputMuted ? (

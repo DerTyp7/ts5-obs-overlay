@@ -1,22 +1,28 @@
+//* Viewer styles
+// this file contains styles for the viewer component
+// styles for the viewer component should not be modified somewhere else
+
 .viewer {
   display: flex;
   flex-direction: column;
-  gap: 0 0;
-  padding: 1rem;
+  padding: 0.5rem;
+
+  h1,
+  p {
+    background-color: #2f313680;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 20ch;
+    user-select: none;
+  }
 
   .channelNameContainer {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    h3 {
-      font-size: 1.7rem;
-      font-weight: 500;
-      margin: 0;
-      background-color: rgba(47, 49, 54, 0.5);
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
-      color: white;
-    }
   }
 
   .client {
@@ -26,23 +32,16 @@
     align-items: center;
     margin: 0.5rem 0;
 
+    // icon styles
     svg {
-      width: 2.8rem;
-      height: 2.8rem;
+      width: 2.1rem;
+      aspect-ratio: 1/1;
       margin-right: 0.5rem;
     }
-    p {
-      margin: 0;
-      color: white;
-      background-color: rgba(47, 49, 54, 0.5);
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
 
-      // ellipsis after 22 characters
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 20ch;
+    // client name styles
+    p {
+      font-size: 1.4rem;
     }
   }
 }

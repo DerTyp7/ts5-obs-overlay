@@ -1,5 +1,101 @@
+// Reset styles for all elements
 * {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Set up basic styles for the entire page
+body,
+html {
+  min-height: 100vh;
+  min-width: 100%;
+  display: flex;
+  overflow-x: hidden;
+  color: #fff;
+}
+
+// Ensure the root element takes up the full viewport
+#root {
+  height: 100%;
+  min-width: 100%;
+}
+
+// Headline styles
+h1 {
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+h4 {
+  font-size: 1.1rem;
+}
+
+// Common styles for heading elements
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+
+// Text styles
+a {
+  color: #3abe78;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 100ms ease-in-out;
+
+  &:hover {
+    color: #31f399;
+  }
+}
+
+// Button styles
+button {
+  background-color: #202024;
+  color: #fff;
+  font-weight: bold;
+  border: 2px solid #31f399;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+
+  &:hover {
+    background-color: #42d486;
+    color: #202024;
+  }
+}
+
+// Custom dark-themed scrollbar
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #363638;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #31f39973;
+  border-radius: 10px;
+
+  &:hover {
+    background: #48ee95;
+  }
 }
