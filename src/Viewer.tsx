@@ -146,6 +146,24 @@ export default function Viewer({
           return <div key={Math.random()}></div>;
         }
       })}
+      {currentChannel == null ? (
+        <>
+          <h4>Overlay couldn't connect to the client:</h4>
+          <br />
+          <br />
+          <h5>1. Make sure to accept the overlay in your TS5-Client via the notifications</h5>
+          <br />
+          <h5>2. Enable remote apps inside the the TS5-Settings</h5>
+          <br />
+          <h5>3. Make sure to match the configuration port with the port in the TS5 remote app settings</h5>
+          <br />
+          <h5>4. Refresh this page/BrowserSource (Select BrowserSource & click "Refresh" in OBS)</h5>
+          <br />
+          <h6>If non of this worked refer to the GitHub and write an issue with your problem</h6>
+        </>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
