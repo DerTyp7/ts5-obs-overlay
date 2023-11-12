@@ -27,7 +27,9 @@ export default function Generator() {
     url.searchParams.set("hideNonTalking", hideNonTalking.toString());
     url.searchParams.set("clientLimit", clientLimit.toString());
 
-    setOutputUrl(url.toString());
+    // url.hash function always sets the hash to the end of the URL, so we have to replace the question mark with a hash
+    // gh-pages needs the hash to be between the base URL and the search params
+    setOutputUrl(url.toString().replace("?", "#/?"));
   }
 
   // Function to copy URL to clipboard
