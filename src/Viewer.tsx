@@ -16,7 +16,7 @@ export default function Viewer({
     remoteAppPort: remoteAppPort,
     auth: {
       identifier: "de.tealfire.obs",
-      version: "2.0.6",
+      version: "2.0.7",
       name: "TS5 OBS Overlay",
       description: "A OBS overlay for TS5 by DerTyp7",
     },

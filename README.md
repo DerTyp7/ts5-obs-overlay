@@ -43,7 +43,7 @@ Try this instruction if you have problems with the quick instructions above.
 5. Enter the in step 1 generated URL into the URL field of the Browser Source
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/50b755f9-d4b4-469f-9136-e2b18f226547)
 
-6. Set the width and height to your desired size. Recommended is a ratio of 1:1 or 1:2 (e.g. 1500x3000 OR 1000x2000)
+6. Set the width and height to your desired size. Recommended is a width of 1000px and the height is determined of how many clients are expected (play around with these values)
 
 7. You should now receive a notification in TeamSpeak5 that the app is allowed to connect to your TeamSpeak5 client. Allow it. (If you don't get a notification, restart TeamSpeak5 and OBS -> try again)  
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/40faa435-e128-415f-98eb-a9e8809e8f65)
