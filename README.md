@@ -41,6 +41,7 @@ Try this instruction if you have problems with the quick instructions above.
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/58ad399f-5344-456f-b243-6e267b489fd5)
 
 5. Enter the in step 1 generated URL into the URL field of the Browser Source
+![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/50b755f9-d4b4-469f-9136-e2b18f226547)
 
 6. Set the width and height to your desired size. Recommended is a ratio of 1:1 or 1:2 (e.g. 1500x3000 OR 1000x2000)
 
