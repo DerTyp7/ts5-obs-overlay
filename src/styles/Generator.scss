@@ -3,6 +3,7 @@ $breakpoint-1: 1200px;
 $breakpoint-2: 790px;
 $breakpoint-3: 600px;
 
+// Tooltip animation keyframes
 @keyframes tooltipAnimation {
   0% {
     opacity: 0;
@@ -16,7 +17,7 @@ $breakpoint-3: 600px;
 
 .generator {
   background-color: #232528;
-  color: white;
+  color: #fff;
   width: 100%;
   display: flex;
   height: 100%;
@@ -39,25 +40,17 @@ $breakpoint-3: 600px;
     gap: 10px 50px;
     flex-wrap: wrap;
     padding-bottom: 10px;
+
     p,
     a {
       font-size: 0.8rem;
     }
+
     p {
       color: #b4b4b4;
     }
-
-    a {
-      color: #3abe78;
-      font-weight: bold;
-      text-decoration: none;
-      transition: all 100ms ease-in-out;
-
-      &:hover {
-        color: #31f399;
-      }
-    }
   }
+
   .output {
     display: flex;
     flex-direction: row;
@@ -142,6 +135,7 @@ $breakpoint-3: 600px;
           justify-content: left;
           column-gap: 10px;
           width: 100%;
+
           input {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -154,7 +148,7 @@ $breakpoint-3: 600px;
             outline: none;
             transition: all 200ms ease-in-out;
             position: relative;
-            color: white;
+            color: #fff;
             text-align: center;
 
             &::-webkit-outer-spin-button,
@@ -163,7 +157,7 @@ $breakpoint-3: 600px;
               margin: 0;
             }
 
-            // make it a cross when checked
+            // Cross when checked styles
             &:checked {
               &:after {
                 content: "";
@@ -193,7 +187,10 @@ $breakpoint-3: 600px;
 
           input[type="number"] {
             width: 50px;
+            height: 25px;
             cursor: text;
+            -moz-appearance: textfield;
+            appearance: textfield;
           }
 
           label {
@@ -202,9 +199,13 @@ $breakpoint-3: 600px;
         }
       }
     }
+
+    // Preview styles
     .preview {
       flex: 1;
       border: 2px solid #31f39973;
+
+      // Viewer styles (see src/styles/Viewer.scss)
       .viewer {
         background-image: url("/images/viewer_example_background.png");
         background-repeat: no-repeat;
@@ -214,6 +215,7 @@ $breakpoint-3: 600px;
     }
   }
 
+  // Responsive styles
   @media screen and (max-width: $breakpoint-1) {
     .generatorContent {
       flex-direction: column;
@@ -243,13 +245,13 @@ $breakpoint-3: 600px;
       .url {
         width: 200px;
       }
-    }
 
-    .generatorContent {
-      .configurations {
-        .options {
-          flex-direction: column;
-          gap: 30px;
+      .generatorContent {
+        .configurations {
+          .options {
+            flex-direction: column;
+            gap: 30px;
+          }
         }
       }
     }

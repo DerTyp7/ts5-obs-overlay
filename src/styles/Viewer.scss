@@ -1,14 +1,14 @@
+//* Viewer styles
+// this file contains styles for the viewer component
+// styles for the viewer component should not be modified somewhere else
+
 .viewer {
   display: flex;
   flex-direction: column;
-  gap: 0 0;
-  font-size: 3rem;
-  color: white;
-  padding: 10px;
+  padding: 0.5rem;
 
   h1,
   p {
-    margin: 0;
     background-color: #2f313680;
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
@@ -18,6 +18,7 @@
     max-width: 20ch;
     user-select: none;
   }
+
   .channelNameContainer {
     display: flex;
     align-items: center;
@@ -31,12 +32,14 @@
     align-items: center;
     margin: 0.5rem 0;
 
+    // icon styles
     svg {
       width: 2.1rem;
       aspect-ratio: 1/1;
       margin-right: 0.5rem;
     }
 
+    // client name styles
     p {
       font-size: 1.4rem;
     }
