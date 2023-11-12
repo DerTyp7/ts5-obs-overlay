@@ -27,7 +27,7 @@ export default function Generator() {
     url.searchParams.set("hideNonTalking", hideNonTalking.toString());
     url.searchParams.set("clientLimit", clientLimit.toString());
 
-    if (url.hostname === "dertyp7.github.io") {
+    if (url.hostname.includes("dertyp7.github.io")) {
       url.pathname = url.pathname + "ts5-obs-overlay/";
     }
 
