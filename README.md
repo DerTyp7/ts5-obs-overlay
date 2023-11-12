@@ -23,7 +23,7 @@ This overlay uses the [TeamSpeak5 Remote App API](https://github.com/DerTyp7/rea
 1. Open this link in your Browser: [https://dertyp7.github.io/ts5-obs-overlay/#/generate](https://dertyp7.github.io/ts5-obs-overlay/#/generate)
 2. Follow the instructions on the website
 3. Accept overlay inside TeamSpeak5  
-   ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/40faa435-e128-415f-98eb-a9e8809e8f65)
+   ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/aa83b07d-3dea-461f-9487-f9e6a299f2f3)
 
 ### Detailed instructions
 
@@ -41,7 +41,7 @@ Try this instruction if you have problems with the quick instructions above.
    ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/58ad399f-5344-456f-b243-6e267b489fd5)
 
 5. Enter the in step 1 generated URL into the URL field of the Browser Source
-   ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/50b755f9-d4b4-469f-9136-e2b18f226547)
+   ![image](https://github.com/DerTyp7/ts5-obs-overlay/assets/76851529/e8fd4a1b-be70-4123-8d28-4dc7ebc8c2bd)
 
 6. Set the width and height to your desired size. Recommended is a width of 1000px and the height is determined of how many clients are expected (play around with these values)
 
