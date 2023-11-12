@@ -4,7 +4,6 @@
   gap: 0 0;
   font-size: 3rem;
   color: white;
-  box-sizing: border-box;
   padding: 10px;
 
   h1,
@@ -17,6 +16,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 20ch;
+    user-select: none;
   }
   .channelNameContainer {
     display: flex;

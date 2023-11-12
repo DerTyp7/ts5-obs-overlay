@@ -62,50 +62,54 @@ export default function Generator() {
         <div className="configurations">
           <h2>Configurations</h2>
 
-          <div className="option">
-            <input
-              type="checkbox"
-              checked={showChannelName}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                setShowChannelName(e.target.checked);
-              }}
-            />
-            <label>Show channelname</label>
-          </div>
+          <div className="options">
+            <section>
+              <div
+                className="option"
+                onClick={() => {
+                  setShowChannelName(!showChannelName);
+                }}
+              >
+                <input type="checkbox" checked={showChannelName} />
+                <label>Show channelname</label>
+              </div>
 
-          <div className="option">
-            <input
-              type="checkbox"
-              checked={hideNonTalking}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                setHideNonTalking(e.target.checked);
-              }}
-            />
-            <label>Hide non talking clients</label>
-          </div>
+              <div
+                className="option"
+                onClick={() => {
+                  setHideNonTalking(!hideNonTalking);
+                }}
+              >
+                <input type="checkbox" checked={hideNonTalking} />
+                <label>Hide non talking clients</label>
+              </div>
+            </section>
 
-          <div className="option">
-            <input
-              type="number"
-              value={20}
-              min={0}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                setClientLimit(parseInt(e.target.value));
-              }}
-            />
-            <label>Client Limit</label>
-          </div>
+            <section>
+              <div className="option">
+                <input
+                  type="number"
+                  value={20}
+                  min={0}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    setClientLimit(parseInt(e.target.value));
+                  }}
+                />
+                <label>Client Limit</label>
+              </div>
 
-          <div className="option">
-            <input
-              type="number"
-              value={5899}
-              min={0}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                setRemoteAppPort(parseInt(e.target.value));
-              }}
-            />
-            <label>RemoteApp-Port</label>
+              <div className="option">
+                <input
+                  type="number"
+                  value={5899}
+                  min={0}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    setRemoteAppPort(parseInt(e.target.value));
+                  }}
+                />
+                <label>RemoteApp-Port</label>
+              </div>
+            </section>
           </div>
         </div>
 
