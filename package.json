@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "description": "Overlay for OBS to show the current talking clients in your Teamspeak 5 Channel",
   "author": "DerTyp7",
-  "homepage": "https://dertyp7.github.io/ts5-obs-overlay",
+  "homepage": "https://dertyp7.github.io/ts5-obs-overlay/#",
   "repository": {
     "type": "git",
     "url": "https://github.com/DerTyp7/ts5-obs-overlay"

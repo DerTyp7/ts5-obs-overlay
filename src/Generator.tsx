@@ -19,7 +19,7 @@ export default function Generator() {
 
   // Function to generate the output URL
   function generateUrl() {
-    const url = new URL(window.location.href.replace("/generate", ""));
+    const url = new URL(window.location.href.replace("/#/generate", ""));
     url.searchParams.set("remoteAppPort", remoteAppPort.toString());
     url.searchParams.set("showChannelName", showChannelName.toString());
     url.searchParams.set("hideNonTalking", hideNonTalking.toString());
