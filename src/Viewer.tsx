@@ -31,7 +31,7 @@ export default function Viewer({
 
   return (
     <div className="viewer">
-      {showChannelName ? (
+      {showChannelName && currentChannel ? (
         <div className="channelNameContainer">
           <h1>{currentChannel?.properties.name}</h1>
         </div>
