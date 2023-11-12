@@ -19,11 +19,17 @@ export default function Generator() {
 
   // Function to generate the output URL
   function generateUrl() {
-    const url = new URL(window.location.href.replace("/#/generate", ""));
+    const url = new URL(window.location.href);
+    url.hash = "";
+
     url.searchParams.set("remoteAppPort", remoteAppPort.toString());
     url.searchParams.set("showChannelName", showChannelName.toString());
     url.searchParams.set("hideNonTalking", hideNonTalking.toString());
     url.searchParams.set("clientLimit", clientLimit.toString());
+
+    if (url.hostname === "dertyp7.github.io") {
+      url.pathname = url.pathname + "ts5-obs-overlay/";
+    }
 
     setOutputUrl(url.toString());
   }
