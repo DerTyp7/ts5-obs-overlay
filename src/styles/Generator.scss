@@ -2,17 +2,6 @@
 $breakpoint-1: 760px;
 $breakpoint-2: 565px;
 
-body {
-  padding: 0;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: #232528;
-}
-
 @keyframes tooltipAnimation {
   0% {
     opacity: 0;
@@ -25,26 +14,20 @@ body {
 }
 
 .generator {
+  background-color: #232528;
+  color: white;
+  width: 100%;
   display: flex;
+  height: 100%;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 50px;
-  color: white;
+  box-sizing: border-box;
+  padding: 50px 0;
 
-  button {
-    background-color: #202024;
-    color: #fff;
-    font-weight: bold;
-    border: 2px solid #31f399;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: all 300ms ease-in-out;
-    &:hover {
-      background-color: #42d486;
-      color: #202024;
-    }
+  .headline {
+    text-align: center;
+    letter-spacing: 1.8px;
   }
 
   .output {
@@ -54,7 +37,7 @@ body {
     justify-content: center;
     column-gap: 20px;
     position: relative;
-    height: 20px;
+    height: 50px;
 
     .url {
       white-space: nowrap;
@@ -98,39 +81,34 @@ body {
       font-weight: bold;
     }
   }
-  .configuration {
+  .generatorContent {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    flex: 1;
+    padding: 0 50px;
     gap: 30px;
+    width: 100%;
+    box-sizing: border-box;
 
-    h1 {
-      font-size: 1.2rem;
-      text-align: center;
-    }
-
-    .options {
+    .configurations {
       display: flex;
       flex-direction: column;
       align-items: left;
-      justify-content: center;
-      height: 100%;
-      width: 100%;
-      border-right: 5px solid rgb(131, 131, 131);
       gap: 10px;
-    }
-
-    .viewer {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       height: 100%;
-      width: 100%;
-      background-color: #fff;
+      flex: 1;
+    }
+    .preview {
+      flex: 1;
+      border: 2px solid #31f39973;
+      .viewer {
+        background-image: url("/images/viewer_example_background.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 500px;
+        padding: 10px;
+      }
     }
 
     .option {
@@ -199,24 +177,4 @@ body {
       }
     }
   }
-}
-
-// custom dark themed scrollbar
-::-webkit-scrollbar {
-  width: 5px;
-  height: 15px;
-}
-
-::-webkit-scrollbar-track {
-  background: #363638;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #31f39973;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #48ee95;
 }
