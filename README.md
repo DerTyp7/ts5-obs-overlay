@@ -29,7 +29,7 @@ This overlay uses the [TeamSpeak5 Remote App API](https://github.com/DerTyp7/rea
 
 Try this instruction if you have problems with the quick instructions above.
 
-1. Open this link in your Browser: [https://dertyp7.tealfire.de/#/generate](https://dertyp7.tealfire.de/#/generate)
+1. Open this link in your Browser: [https://ts5-overlay.tealfire.de/#/generate](https://ts5-overlay.tealfire.de/#/generate)
 
 2. Follow the instructions on the website
 
