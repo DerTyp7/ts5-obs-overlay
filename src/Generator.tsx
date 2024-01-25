@@ -19,13 +19,17 @@ export default function Generator() {
 
   // Function to generate the output URL
   function generateUrl() {
-    const url = new URL(window.location.href.replace("/generate", ""));
+    const url = new URL(window.location.href);
+    url.hash = "";
+
     url.searchParams.set("remoteAppPort", remoteAppPort.toString());
     url.searchParams.set("showChannelName", showChannelName.toString());
     url.searchParams.set("hideNonTalking", hideNonTalking.toString());
     url.searchParams.set("clientLimit", clientLimit.toString());
 
-    setOutputUrl(url.toString());
+    // url.hash function always sets the hash to the end of the URL, so we have to replace the question mark with a hash
+    // gh-pages needs the hash to be between the base URL and the search params
+    setOutputUrl(url.toString().replace("?", "#/?"));
   }
 
   // Function to copy URL to clipboard
@@ -58,7 +62,7 @@ export default function Generator() {
         <p>1. Customize your settings</p>
         <p>2. Copy the generated URL</p>
         <p>3. Paste the URL into the BrowserSource URL field in OBS</p>
-        <a href="#">Click here for detailed instructions</a>
+        <a href="https://github.com/DerTyp7/ts5-obs-overlay#detailed-instructions">Click here for detailed instructions</a>
       </div>
 
       {/* Output Section */}

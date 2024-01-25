@@ -21,7 +21,6 @@ export default function App() {
         }
       />
       <Route path="/generate" element={<Generator />} />
-      <Route path="*" element={<Navigate to="/generate" replace />} />
     </Routes>
   );
 }
